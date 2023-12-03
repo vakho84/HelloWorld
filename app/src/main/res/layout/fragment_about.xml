@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/content_paddingVertical_main">
+
+        <TextView
+            style="@style/TextAppearance.HelloWorld.Headline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_about_title"
+            android:layout_margin="@dimen/title_margin"/>
+
+        <ImageView
+            android:id="@+id/logoAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_about_image_marginTop"
+            android:layout_marginBottom="@dimen/fragment_about_image_marginBottom"
+            android:contentDescription="@string/fragment_about_logo_desc"
+            app:srcCompat="@drawable/fragment_about_logo" />
+
+        <TextView
+            android:id="@+id/phone_about"
+            style="@style/TextAppearance.HelloWorld.HeadlineLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_about_headLineLink_margin"
+            android:text="@string/fragment_about_phone_number" />
+
+        <TextView
+            android:id="@+id/website_about"
+            style="@style/TextAppearance.HelloWorld.HeadlineLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_about_headLineLink_margin"
+            android:text="@string/fragment_about_website" />
+
+        <TextView
+            android:id="@+id/email_about"
+            style="@style/TextAppearance.HelloWorld.HeadlineLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_about_headLineLink_margin"
+            android:text="@string/fragment_about_email" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/switch_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginVertical="@dimen/fragment_about_switchCompat_row_marginVertical"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_about_switchCompat_row_height">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/themeSwitchCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/theme_switch_compat_thumb_layer_list"
+                app:track="@drawable/theme_switch_compat_track_background_selector"
+                app:showText="false" />
+
+            <Space
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/langSwitchCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/lang_switch_compat_thumb_layer_list"
+                app:track="@drawable/theme_switch_compat_track_background_selector"
+                app:showText="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_about_button_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginVertical="@dimen/fragment_about_button_row_marginVertical"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_about_switchCompat_row_height">
+
+            <Button
+                android:id="@+id/about_system_default_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:backgroundTint="#C0C0C0"
+                app:cornerRadius="50dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="#008400"
+                android:text="@string/fragment_about_system_default"
+                android:textColor="#008400"
+                android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/versionAbout"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_margin="@dimen/fragment_about_headLineLink_margin"
+            android:text="@string/fragment_about_app_version" />
+
+    </LinearLayout>
+</ScrollView>

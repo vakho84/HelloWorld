@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:gravity="fill"
+        android:drawable="@drawable/theme_switch_compat_thumb_background_selector" />
+
+    <item
+        android:gravity="center"
+        android:drawable="@drawable/lang_switch_compat_thumb_selector"
+        android:top="4dp"
+        android:bottom="4dp"
+        android:left="4dp"
+        android:right="4dp" />
+</layer-list>
