@@ -3,7 +3,7 @@ package com.example.helloworld.ui
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.helloworld.model.HelloWorldTheme
 
-class HelloWorldApp {
+ class HelloWorldApp {
     fun changeTheme(theme: HelloWorldTheme?) {
         val mode: Int
         mode = when (theme) {

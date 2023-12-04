@@ -6,16 +6,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import com.example.helloworld.databinding.FragmentAboutBinding
+import com.example.helloworld.model.AppSettingsRepository
+import com.example.helloworld.model.HelloWorldTheme
+import com.example.helloworld.ui.HelloWorldApp
 
 class AboutFragment : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
+    private lateinit var appSettingsRepository: AppSettingsRepository
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+   /* private var onCheckedChangeListenerTheme = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        var theme: HelloWorldTheme = if (isChecked) HelloWorldTheme.Dark else HelloWorldTheme.Light
+        appSettingsRepository.setTheme(theme)
+        HelloWorldApp.changeTheme(theme)
+    }*/
 
     override fun onCreateView(
             inflater: LayoutInflater,
