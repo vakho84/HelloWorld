@@ -1,13 +1,18 @@
 package com.example.helloworld.ui.home
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.helloworld.databinding.FragmentHomeBinding
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.net.MalformedURLException
+import java.net.URL
 
 class HomeFragment : Fragment() {
 
@@ -22,21 +27,36 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        binding.homeImageView.loadFromUrl("https://all-aforizmy.ru/wp-content/uploads/2023/05/ap.jpg")
+
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+}
+
+fun ImageView.loadFromUrl(url: String) {
+    apply outer@ {
+        object : Thread() {
+            override fun run() {
+                try {
+                    URL(url).openStream().use { inputStream ->
+                        BitmapFactory.decodeStream(BufferedInputStream(inputStream), null, null).let {
+                            this@outer.context.mainExecutor.execute {
+                                this@outer.setImageBitmap(it)
+                            }
+                        }
+                    }
+                } catch (ignored: Exception) {
+                }
+            }
+        }.start()
     }
 }

@@ -1,18 +1,12 @@
 package com.example.helloworld.model
 
-abstract class AppSettingsRepository {
+class AppSettingsRepository(private val appPreferencesDataSource: AppPreferencesDataSource) {
 
-     abstract var appPreferencesDataSource: AppPreferencesDataSource
-
-    open fun appSettingsRepository(appPreferencesDataSource: AppPreferencesDataSource?) {
-        this.appPreferencesDataSource = appPreferencesDataSource!!
-    }
-
-    open fun setTheme(theme: HelloWorldTheme) {
+    fun setTheme(theme: HelloWorldTheme) {
         appPreferencesDataSource.setTheme(theme)
     }
 
-    open fun getTheme(): HelloWorldTheme {
+    fun getTheme(): HelloWorldTheme {
         return appPreferencesDataSource.getTheme()
     }
 
