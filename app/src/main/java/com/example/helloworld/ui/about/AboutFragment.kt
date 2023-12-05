@@ -22,35 +22,36 @@ class AboutFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-   /* private var onCheckedChangeListenerTheme = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-        var theme: HelloWorldTheme = if (isChecked) HelloWorldTheme.Dark else HelloWorldTheme.Light
+    private var onCheckedChangeListenerTheme = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        var theme: HelloWorldTheme = if (isChecked) HelloWorldTheme.Dark
+                                     else HelloWorldTheme.Light
         appSettingsRepository.setTheme(theme)
         HelloWorldApp.changeTheme(theme)
-    }*/
+    }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
 
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.phoneAbout.setOnClickListener {v->
+        binding.phoneAbout.setOnClickListener { v ->
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:+75555555555")
             startActivity(intent)
         }
 
-        binding.websiteAbout.setOnClickListener{v->
+        binding.websiteAbout.setOnClickListener { v ->
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://kotlinlang.org")
             startActivity(intent)
         }
 
-        binding.emailAbout.setOnClickListener { v->
+        binding.emailAbout.setOnClickListener { v ->
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:test@gmail.com")
             startActivity(intent)
