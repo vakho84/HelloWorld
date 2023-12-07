@@ -31,7 +31,7 @@ open class HelloWorldActivity : AppCompatActivity() {
         super.attachBaseContext(createContext(appSettingsRepository.getLang(), base))
     }
 
-    fun reconfigureActivity() {
+     fun reconfigureActivity() {
         ActivityCompat.recreate(this)
     }
 

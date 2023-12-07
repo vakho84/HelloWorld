@@ -56,9 +56,7 @@ class HelloWorldApp : Application() {
         super.onCreate()
 
         val appPreferences = AppSharedPreferencesDataSource(this)
-
         appSettingsRepository = AppSettingsRepository(appPreferences)
-
         changeTheme(appPreferences.getTheme())
     }
 
