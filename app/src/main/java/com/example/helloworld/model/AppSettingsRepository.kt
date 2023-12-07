@@ -10,4 +10,11 @@ class AppSettingsRepository(private val appPreferencesDataSource: AppPreferences
         return appPreferencesDataSource.getTheme()
     }
 
+    fun setLang(lang: HelloWorldLang){
+        appPreferencesDataSource.setLang(lang)
+    }
+    fun getLang(): HelloWorldLang {
+        return appPreferencesDataSource.getLang()
+    }
+
 }

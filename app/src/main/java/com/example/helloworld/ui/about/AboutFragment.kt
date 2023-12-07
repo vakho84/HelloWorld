@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
+import com.example.helloworld.HelloWorldActivity
+import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.databinding.FragmentAboutBinding
 import com.example.helloworld.model.AppSettingsRepository
+import com.example.helloworld.model.HelloWorldLang
 import com.example.helloworld.model.HelloWorldTheme
-import com.example.helloworld.ui.HelloWorldApp
 
 class AboutFragment : Fragment() {
 
@@ -28,6 +30,13 @@ class AboutFragment : Fragment() {
             appSettingsRepository.setTheme(theme)
             HelloWorldApp.changeTheme(theme)
         }
+
+    private val onCheckedChangeListenerLang = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        val lang: HelloWorldLang = if (isChecked) HelloWorldLang.Rus else HelloWorldLang.Eng
+        appSettingsRepository.setLang(lang)
+        (activity as HelloWorldActivity?)?.recreate()
+    }
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -61,6 +70,20 @@ class AboutFragment : Fragment() {
         updateThemeSwitch()
         themeSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerTheme)
 
+        updateLangSwitch()
+        langSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerLang)
+
+
+        val systemDefaultButton = binding.aboutSystemDefaultButton
+        systemDefaultButton.setOnClickListener {
+            appSettingsRepository.setTheme(HelloWorldTheme.System)
+            HelloWorldApp.changeTheme(HelloWorldTheme.System)
+            updateThemeSwitch()
+            appSettingsRepository.setLang(HelloWorldLang.System)
+            (activity as HelloWorldActivity).reconfigureActivity()
+            updateLangSwitch()
+        }
+
         return binding.root
     }
 
@@ -76,6 +99,17 @@ class AboutFragment : Fragment() {
             }
         }
         binding.themeSwitchCompat.isChecked = isNightModeOn
+    }
+
+    private fun updateLangSwitch(){
+        val isRuOn: Boolean
+        val lang: HelloWorldLang = appSettingsRepository.getLang()
+        isRuOn = when(lang) {
+            HelloWorldLang.Rus -> true
+            HelloWorldLang.Eng -> false
+            HelloWorldLang.System ->  HelloWorldApp.isSystemLanguageRu()
+        }
+        binding.langSwitchCompat.isChecked = isRuOn
     }
 
 

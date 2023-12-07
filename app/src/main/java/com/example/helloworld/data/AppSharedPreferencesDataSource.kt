@@ -2,12 +2,18 @@ package com.example.helloworld.data
 
 import android.content.Context
 import com.example.helloworld.model.AppPreferencesDataSource
+import com.example.helloworld.model.HelloWorldLang
 import com.example.helloworld.model.HelloWorldTheme
 
 const val KEY_THEME = "KEY_THEME"
 private const val THEME_DARK = 0
 private const val THEME_LIGHT = 1
 private const val THEME_SYSTEM = 2
+
+const val KEY_LANG = "KEY_LANG"
+private const val LANG_RU = 0
+private const val LANG_ENG = 1
+private const val LANG_SYSTEM = 2
 
 class AppSharedPreferencesDataSource(appContext: Context) : AppPreferencesDataSource {
 
@@ -33,6 +39,27 @@ class AppSharedPreferencesDataSource(appContext: Context) : AppPreferencesDataSo
             else -> throw IllegalStateException()
         }
         return helloWorldTheme
+    }
+
+    override fun setLang(helloWorldLang: HelloWorldLang) {
+        val intValue = when (helloWorldLang) {
+            HelloWorldLang.Rus -> LANG_RU
+            HelloWorldLang.Eng -> LANG_RU
+            HelloWorldLang.System -> LANG_SYSTEM
+        }
+        sharedPreferences.edit().putInt(KEY_THEME, intValue).apply()
+    }
+
+    override fun getLang(): HelloWorldLang {
+        val helloWorldLang: HelloWorldLang
+        val intValue = sharedPreferences.getInt(KEY_LANG, LANG_SYSTEM)
+        helloWorldLang = when (intValue) {
+            LANG_RU -> HelloWorldLang.Rus
+            LANG_ENG -> HelloWorldLang.Eng
+            THEME_SYSTEM -> HelloWorldLang.System
+            else -> throw IllegalStateException()
+        }
+        return helloWorldLang
     }
 
 }
