@@ -44,10 +44,10 @@ class AppSharedPreferencesDataSource(appContext: Context) : AppPreferencesDataSo
     override fun setLang(helloWorldLang: HelloWorldLang) {
         val intValue = when (helloWorldLang) {
             HelloWorldLang.Rus -> LANG_RU
-            HelloWorldLang.Eng -> LANG_RU
+            HelloWorldLang.Eng -> LANG_ENG
             HelloWorldLang.System -> LANG_SYSTEM
         }
-        sharedPreferences.edit().putInt(KEY_THEME, intValue).apply()
+        sharedPreferences.edit().putInt(KEY_LANG, intValue).apply()
     }
 
     override fun getLang(): HelloWorldLang {
