@@ -17,5 +17,12 @@
     <dimen name="fragment_about_switchCompat_row_marginVertical">16dp</dimen>
     <dimen name="fragment_about_button_row_marginVertical">16dp</dimen>
 
+    <dimen name="fragment_home_image_row_height">416dp</dimen>
+    <dimen name="fragment_home_button_row_layout_height">72dp</dimen>
+    <dimen name="fragment_home_button_row_marginVertical">16dp</dimen>
+    <dimen name="fragment_home_setUrlButton_marginTop">16dp</dimen>
+    <dimen name="fragment_home_setUrlButton_marginBottom">16dp</dimen>
+
+
 
 </resources>

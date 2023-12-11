@@ -19,6 +19,10 @@
     <string name="fragment_about_app_version" translatable="false">1.0</string>
     <string name="fragment_about_system_default">System default</string>
 
+    <string name="fragment_home_image_desc">Loaded image</string>
+    <string name="fragment_home_load_image_button_text">Load image</string>
+    <string name="fragment_home_url_hint">Input URL</string>
+
 
 
 </resources>

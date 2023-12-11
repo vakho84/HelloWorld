@@ -1,17 +1,18 @@
 package com.example.helloworld.ui.home
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+import android.view.inputmethod.EditorInfo.IME_ACTION_GO
+import android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.helloworld.databinding.FragmentHomeBinding
 import java.io.BufferedInputStream
-import java.io.IOException
-import java.net.MalformedURLException
 import java.net.URL
 
 class HomeFragment : Fragment() {
@@ -23,16 +24,44 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.homeImageView.loadFromUrl("https://all-aforizmy.ru/wp-content/uploads/2023/05/ap.jpg")
+        var customUrl = "https://all-aforizmy.ru/wp-content/uploads/2023/05/ap.jpg"
+        binding.homeImageView.loadFromUrl(customUrl)
 
+
+        // edit text enter key listener
+        val editTextInputUrl = binding.homeUrlInput
+        editTextInputUrl.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                // if the event is a key down event on the enter button
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    // perform action on key press
+                    customUrl = editTextInputUrl.getText().toString()
+                    // clear focus and hide cursor from edit text
+                    // editTextInputUrl.clearFocus()
+                    editTextInputUrl.isCursorVisible = false
+                    editTextInputUrl.imeOptions = IME_ACTION_DONE
+                    return true
+                }
+                editTextInputUrl.isCursorVisible = true
+                editTextInputUrl.requestFocus()
+                return false
+            }
+        })
+
+        val loadImage = binding.homeLoadImageButton
+        loadImage.setOnClickListener(View.OnClickListener {
+            binding.homeImageView.loadFromUrl(customUrl)
+        })
         return root
     }
 
@@ -43,7 +72,7 @@ class HomeFragment : Fragment() {
 }
 
 fun ImageView.loadFromUrl(url: String) {
-    apply outer@ {
+    apply outer@{
         object : Thread() {
             override fun run() {
                 try {
