@@ -23,6 +23,11 @@
     <dimen name="fragment_home_setUrlButton_marginTop">16dp</dimen>
     <dimen name="fragment_home_setUrlButton_marginBottom">16dp</dimen>
 
+    <dimen name="fragment_weather_temperature_value_width">72dp</dimen>
+    <dimen name="fragment_weather_row_marginVertical">4dp</dimen>
+    <dimen name="fragment_weather_row_height">72dp</dimen>
+    <dimen name="fragment_weather_temperatureValue_width">168dp</dimen>
+
 
 
 </resources>

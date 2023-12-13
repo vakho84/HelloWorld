@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+    <string name="menu_weather">Weather</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_about">About</string>
 
@@ -22,6 +23,11 @@
     <string name="fragment_home_image_desc">Loaded image</string>
     <string name="fragment_home_load_image_button_text">Load image</string>
     <string name="fragment_home_url_hint">Input URL</string>
+
+    <string name="fragment_weather_temperature_title">Temperature</string>
+    <string name="fragment_weather_temperature_value_c" translatable="false">0</string>
+    <string name="fragment_weather_temperature_unit_c" translatable="false">°C</string>
+    <string name="fragment_weather_load_weather_button_text">Load weather</string>
 
 
 

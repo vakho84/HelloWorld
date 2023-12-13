@@ -2,6 +2,8 @@ package com.example.helloworld
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Button
+import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -9,7 +11,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.helloworld.databinding.ActivityMainBinding
+import com.example.helloworld.retrofit.WeatherApi
+import com.example.helloworld.ui.weather.WeatherFragment
+import com.example.helloworld.databinding.FragmentWeatherBinding
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity: HelloWorldActivity() {
 
@@ -31,9 +41,10 @@ class MainActivity: HelloWorldActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_about), drawerLayout)
+                R.id.nav_home, R.id.nav_weather, R.id.nav_gallery, R.id.nav_about), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -8,6 +8,7 @@
     <string name="action_settings">Настройки</string>
 
     <string name="menu_home">Домой</string>
+    <string name="menu_weather">Погода</string>
     <string name="menu_gallery">Галерея</string>
     <string name="menu_about">О нас</string>
 
@@ -22,6 +23,9 @@
     <string name="fragment_home_image_desc">Загруженное изображение</string>
     <string name="fragment_home_load_image_button_text">Загрузить изображение</string>
     <string name="fragment_home_url_hint">Вставте ссылку</string>
+
+    <string name="fragment_weather_temperature_title">Температура</string>
+    <string name="fragment_weather_load_weather_button_text">Загрузить пагоду</string>
 
 
 

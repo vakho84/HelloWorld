@@ -34,5 +34,4 @@ open class HelloWorldActivity : AppCompatActivity() {
      fun reconfigureActivity() {
         ActivityCompat.recreate(this)
     }
-
 }
