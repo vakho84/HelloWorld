@@ -1,19 +1,15 @@
 package com.example.helloworld.ui.weather
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.helloworld.R
-import com.example.helloworld.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
 import com.example.helloworld.databinding.FragmentWeatherBinding
+import com.example.helloworld.retrofit.CurrentWeather
 import com.example.helloworld.retrofit.WeatherApi
+import com.example.helloworld.retrofit.WeatherResponseBody
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
@@ -24,20 +20,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-import java.io.BufferedInputStream
 import java.lang.reflect.Type
-import java.net.URL
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
-import java.util.TimeZone
 
 class WeatherFragment : Fragment() {
 
+    var mainCustomUrl: String? = null
+    var mainWeather: WeatherResponseBody? = null
+    var city = "Tbilisi"
     private var _binding: FragmentWeatherBinding? = null
 
     // This property is only valid between onCreateView and
@@ -55,10 +46,8 @@ class WeatherFragment : Fragment() {
 
 
         val apiKey = "5924949e16a8492b9e8184723231212"
-       // var weatherType = "/current"
-       var city = "Tbilisi"
+        var city = "Tbilisi"
 
-        val tv = binding.weatherTemperatureValue
         val button = binding.weatherLoadWeatherButton
 
         val retrofit = Retrofit.Builder()
@@ -75,12 +64,33 @@ class WeatherFragment : Fragment() {
 
                 })
                 .create())).build()
+
         val weatherApi = retrofit.create(WeatherApi::class.java)
+
+        var  customUrl: String?
+
+        CoroutineScope(Dispatchers.IO).launch {
+            binding.weatherCityInput.setText(city).toString()
+           // val weather = weatherApi.getWeather(apiKey, city)
+            val weather = weatherApi.getWeather(apiKey, binding.weatherCityInput.text.toString())
+            activity?.runOnUiThread {
+                binding.weatherTemperatureValue.text = weather.current.tempC.toString()
+                customUrl = "https:" + weather.current.condition.icon
+                mainCustomUrl = customUrl
+                Glide.with(requireView()).load(customUrl).into(binding.weatherImage)
+            }
+        }
+
+
         button.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
+               // val city2 = binding.weatherCityInput.setText(city).toString()
+                city = binding.weatherCityInput.text.toString()
                 val weather = weatherApi.getWeather(apiKey, city)
                 activity?.runOnUiThread {
-                    tv.text = weather.current.tempC.toString()
+                    binding.weatherTemperatureValue.text = weather.current.tempC.toString()
+                    customUrl = "https:" + weather.current.condition.icon
+                    Glide.with(requireView()).load(customUrl).into(binding.weatherImage)
                 }
             }
         }

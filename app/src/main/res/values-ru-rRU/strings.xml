@@ -26,6 +26,7 @@
 
     <string name="fragment_weather_temperature_title">Температура</string>
     <string name="fragment_weather_load_weather_button_text">Загрузить пагоду</string>
+    <string name="fragment_weather_city_hint">Введите город</string>
 
 
 

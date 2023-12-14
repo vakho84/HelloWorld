@@ -23,14 +23,45 @@
         android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_home_image_row_height">
-
-        <ImageView
-            android:id="@+id/home_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/fragment_home_image_desc"/>
-
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/fragment_weather_city_row"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="@dimen/fragment_weather_city_row_marginVertical"
+        android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/setCity_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_weather_row_height">
+
+            <EditText
+                style="@style/TextAppearance.HelloWorld.Title"
+                android:id="@+id/weather_city_input"
+                android:hint="@string/fragment_weather_city_hint"
+                android:inputType="text"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_row_height"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                tools:ignore="RtlSymmetry"/>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
     <LinearLayout
         android:id="@+id/fragment_weather_temperature_row"
         android:orientation="vertical"
@@ -52,9 +83,7 @@
             style="@style/TextAppearance.HelloWorld.Title"
             android:text="@string/fragment_weather_temperature_title"
             android:gravity="center"
-            android:layout_width="wrap_content"
-
-            android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle"/>
+            android:layout_width="wrap_content" />
 
         <Space
             android:layout_weight="1"
@@ -68,18 +97,23 @@
             android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/weather_temperature_value"
             style="@style/TextAppearance.HelloWorld.Title"
+            android:id="@+id/weather_temperature_value"
             android:text="@string/fragment_weather_temperature_value_c"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle"/>
+            android:gravity="center" />
 
             <TextView
-                android:id="@+id/weather_temperature_unit"
                 style="@style/TextAppearance.HelloWorld.Title"
+                android:id="@+id/weather_temperature_unit"
                 android:text="@string/fragment_weather_temperature_unit_c"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle"/>
+                android:gravity="left|center"
+                android:layout_width="@dimen/fragment_weather_temperature_unit_width"/>
+
+            <ImageView
+                android:id="@+id/weather_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/fragment_home_image_desc"/>
 
         </LinearLayout>
     </LinearLayout>

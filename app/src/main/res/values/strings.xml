@@ -28,6 +28,7 @@
     <string name="fragment_weather_temperature_value_c" translatable="false">0</string>
     <string name="fragment_weather_temperature_unit_c" translatable="false">°C</string>
     <string name="fragment_weather_load_weather_button_text">Load weather</string>
+    <string name="fragment_weather_city_hint">Input city</string>
 
 
 

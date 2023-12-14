@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val customUrl = "https://all-aforizmy.ru/wp-content/uploads/2023/05/ap.jpg"
 //        binding.homeImageView.loadFromUrl(customUrl)
         Glide.with(this).load(customUrl).into(binding.homeImageView)
