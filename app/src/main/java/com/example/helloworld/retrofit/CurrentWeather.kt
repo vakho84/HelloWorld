@@ -1,9 +1,7 @@
 package com.example.helloworld.retrofit
 
-import android.service.notification.Condition
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.Date
+
 
 data class WeatherCondition(
     val text: String,
