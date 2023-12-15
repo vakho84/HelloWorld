@@ -2,13 +2,9 @@ package com.example.helloworld.ui.home
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
-import android.view.inputmethod.EditorInfo.IME_ACTION_GO
-import android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -60,10 +56,14 @@ class HomeFragment : Fragment() {
         }) */
 
         val loadImage = binding.homeLoadImageButton
-        loadImage.setOnClickListener(View.OnClickListener {
-//            binding.homeImageView.loadFromUrl(editTextInputUrl.text.toString())
+        loadImage.setOnClickListener{
             Glide.with(this).load(editTextInputUrl.text.toString()).into(binding.homeImageView)
-        })
+        }
+
+       // loadImage.setOnClickListener(View.OnClickListener {
+       // binding.homeImageView.loadFromUrl(editTextInputUrl.text.toString())
+       //})
+
         return root
     }
 
