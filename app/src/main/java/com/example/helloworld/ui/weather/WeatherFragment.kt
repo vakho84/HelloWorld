@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.helloworld.databinding.FragmentWeatherBinding
@@ -26,11 +28,13 @@ import java.time.format.DateTimeFormatter
 
 class WeatherFragment : Fragment() {
 
-    var mainCustomUrl: String? = null
-    var mainWeather: WeatherResponseBody? = null
-    var city = "Tbilisi"
-    private var _binding: FragmentWeatherBinding? = null
+   private val apiKey = "5924949e16a8492b9e8184723231212"
+  // private var city = "Tbilisi"
+    private lateinit var city: String
+    private lateinit var weather: WeatherResponseBody
+    private var isEmpty = false
 
+    private var _binding: FragmentWeatherBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -43,11 +47,6 @@ class WeatherFragment : Fragment() {
 
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-        val apiKey = "5924949e16a8492b9e8184723231212"
-        var city = "Tbilisi"
-
         val button = binding.weatherLoadWeatherButton
 
         val retrofit = Retrofit.Builder()
@@ -66,36 +65,37 @@ class WeatherFragment : Fragment() {
                 .create())).build()
 
         val weatherApi = retrofit.create(WeatherApi::class.java)
-
         var  customUrl: String?
 
-        CoroutineScope(Dispatchers.IO).launch {
-            binding.weatherCityInput.setText(city).toString()
-           // val weather = weatherApi.getWeather(apiKey, city)
-            val weather = weatherApi.getWeather(apiKey, binding.weatherCityInput.text.toString())
-            activity?.runOnUiThread {
-                binding.weatherTemperatureValue.text = weather.current.tempC.toString()
-                customUrl = "https:" + weather.current.condition.icon
-                mainCustomUrl = customUrl
-                Glide.with(requireView()).load(customUrl).into(binding.weatherImage)
-            }
-        }
 
+        if ( isEmpty) {
+            binding.weatherTemperatureValue.text = weather.current.tempC.toString()
+            customUrl = "https:" + weather.current.condition.icon
+            Glide.with(requireContext()).load(customUrl).into(binding.weatherImage)
+        }
 
         button.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-               // val city2 = binding.weatherCityInput.setText(city).toString()
-                city = binding.weatherCityInput.text.toString()
-                val weather = weatherApi.getWeather(apiKey, city)
+                if (binding.weatherCityInput.text.toString() == "")
+                {city = "Tbilisi"
+                    binding.weatherCityInput.setText(city)
+                }
+                else city = binding.weatherCityInput.text.toString()
+                 weather = weatherApi.getWeather(apiKey, city)
+                isEmpty = true
                 activity?.runOnUiThread {
                     binding.weatherTemperatureValue.text = weather.current.tempC.toString()
                     customUrl = "https:" + weather.current.condition.icon
-                    Glide.with(requireView()).load(customUrl).into(binding.weatherImage)
+                    Glide.with(requireContext()).load(customUrl).into(binding.weatherImage)
                 }
             }
         }
 
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
     override fun onDestroyView() {
