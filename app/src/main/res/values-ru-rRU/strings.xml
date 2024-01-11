@@ -10,6 +10,7 @@
     <string name="menu_home">Домой</string>
     <string name="menu_weather">Погода</string>
     <string name="menu_gallery">Галерея</string>
+    <string name="menu_sandbox">Песочница</string>
     <string name="menu_about">О нас</string>
 
     <string name="fragment_about_logo_desc">Логотип</string>
