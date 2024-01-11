@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/linearLayout_sandbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/content_paddingVertical_main">
+
+        <TextView
+            style="@style/TextAppearance.HelloWorld.Headline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_sandbox_title"
+            android:layout_margin="@dimen/title_margin"/>
+
+    </LinearLayout>
+</ScrollView>

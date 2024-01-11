@@ -10,6 +10,7 @@
     <string name="menu_home">Домой</string>
     <string name="menu_weather">Погода</string>
     <string name="menu_gallery">Галерея</string>
+    <string name="menu_sandbox">Песочница</string>
     <string name="menu_about">О нас</string>
 
     <string name="fragment_about_logo_desc">Логотип</string>
@@ -27,6 +28,8 @@
     <string name="fragment_weather_temperature_title">Температура</string>
     <string name="fragment_weather_load_weather_button_text">Загрузить пагоду</string>
     <string name="fragment_weather_city_hint">Введите город</string>
+
+    <string name="fragment_sandbox_title">Для экспериментов</string>
 
 
 
