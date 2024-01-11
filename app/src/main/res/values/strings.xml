@@ -31,6 +31,8 @@
     <string name="fragment_weather_load_weather_button_text">Load weather</string>
     <string name="fragment_weather_city_hint">Input city</string>
 
+    <string name="fragment_sandbox_title">For experiments</string>
+
 
 
 </resources>
