@@ -33,6 +33,21 @@
 
     <string name="fragment_sandbox_title">For experiments</string>
 
-
+    <string name="fragment_flags_austria">Austria</string>
+    <string name="fragment_flags_austria_image_desc">Austria flag image</string>
+    <string name="fragment_flags_poland">Poland</string>
+    <string name="fragment_flags_poland_image_desc">Poland flag image</string>
+    <string name="fragment_flags_italy">Italy</string>
+    <string name="fragment_flags_italy_image_desc">Italy flag image</string>
+    <string name="fragment_flags_colombia">Colombia</string>
+    <string name="fragment_flags_colombia_image_desc">Colombia flag image</string>
+    <string name="fragment_flags_madagascar">Madagascar</string>
+    <string name="fragment_flags_madagascar_image_desc">Madagascar flag image</string>
+    <string name="fragment_flags_thailand">Thailand</string>
+    <string name="fragment_flags_thailand_image_desc">Thailand flag image</string>
+    <string name="fragment_flags_denmark">Denmark</string>
+    <string name="fragment_flags_denmark_image_desc">Denmark flag image</string>
+    <string name="fragment_flags_switzerland">Switzerland</string>
+    <string name="fragment_flags_switzerland_image_desc">Switzerland flag image</string>
 
 </resources>
