@@ -31,6 +31,22 @@
 
     <string name="fragment_sandbox_title">Для экспериментов</string>
 
+    <string name="fragment_flags_austria">Австрия</string>
+    <string name="fragment_flags_austria_image_desc">Изображение флага Австрииe</string>
+    <string name="fragment_flags_poland">Польша</string>
+    <string name="fragment_flags_poland_image_desc">Изображение флага Полши</string>
+    <string name="fragment_flags_italy">Италия</string>
+    <string name="fragment_flags_italy_image_desc">Изображение флага Италии</string>
+    <string name="fragment_flags_colombia">Колумбия</string>
+    <string name="fragment_flags_colombia_image_desc">Изображение флага Колумбии</string>
+    <string name="fragment_flags_madagascar">Мадагаскар</string>
+    <string name="fragment_flags_madagascar_image_desc">Изображение флага Мадагаскара</string>
+    <string name="fragment_flags_thailand">Таиланд</string>
+    <string name="fragment_flags_thailand_image_desc">Изображение флага Тайланда</string>
+    <string name="fragment_flags_denmark">Дания</string>
+    <string name="fragment_flags_denmark_image_desc">Изображение флага Дании</string>
+    <string name="fragment_flags_switzerland">Швейцария</string>
+    <string name="fragment_flags_switzerland_image_desc">Изображение флага Швейцарии</string>
 
 
 </resources>
