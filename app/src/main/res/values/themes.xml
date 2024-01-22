@@ -34,6 +34,13 @@
         <item name="android:layout_height">72dp</item>
     </style>
 
+    <style name="TextAppearance.HelloWorld.weatherRows" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/green_132</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">@dimen/fragment_weather_temperature_row_height</item>
+    </style>
+
     <style name="TextAppearance.HelloWorld.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textSize">40sp</item>

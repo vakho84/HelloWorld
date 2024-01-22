@@ -3,6 +3,17 @@ package com.example.helloworld.retrofit
 import java.time.LocalDateTime
 
 
+data class WeatherLocation(
+    val name: String,
+    val region: String,
+    val country: String,
+    val lat: Float,
+    val lon: Float,
+    val tz_id: String,
+    val localtime_epoch: Long,
+    val localtime: String
+)
+
 data class WeatherCondition(
     val text: String,
     val icon: String,
@@ -38,5 +49,6 @@ data class CurrentWeather(
 )
 
 data class WeatherResponseBody (
-    val current: CurrentWeather
+    val current: CurrentWeather,
+    val location: WeatherLocation
 )

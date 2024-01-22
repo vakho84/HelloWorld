@@ -1,141 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/linearLayout_weather"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_gravity="top"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:paddingVertical="@dimen/content_paddingVertical_main">
 
-    <LinearLayout
-        android:id="@+id/fragment_weather_image_row"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginVertical="@dimen/fragment_about_button_row_marginVertical"
-        android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/fragment_home_image_row_height">
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/fragment_weather_city_row"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_marginVertical="@dimen/fragment_weather_city_row_marginVertical"
-        android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
-            android:id="@+id/setCity_row"
+            android:id="@+id/fragment_weather_image_row"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_home_image_row_height"
+            android:layout_marginVertical="@dimen/fragment_about_button_row_marginVertical"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/fragment_weather_row_height">
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main"></LinearLayout>
 
-            <EditText
-                style="@style/TextAppearance.HelloWorld.Title"
-                android:id="@+id/weather_city_input"
-                android:hint="@string/fragment_weather_city_hint"
-                android:inputType="text"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/fragment_weather_row_height"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                tools:ignore="RtlSymmetry"/>
-
-
-
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/fragment_weather_temperature_row"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_marginVertical="@dimen/fragment_home_button_row_marginVertical"
-        android:paddingHorizontal="@dimen/content_paddingHorizontal_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:id="@+id/temperature_row"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/fragment_weather_row_height">
-
-        <TextView
-            style="@style/TextAppearance.HelloWorld.Title"
-            android:text="@string/fragment_weather_temperature_title"
-            android:gravity="center"
-            android:layout_width="wrap_content" />
-
-        <Space
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="top"
-            android:layout_width="@dimen/fragment_weather_temperatureValue_width"
-            android:layout_height="wrap_content">
-
-        <TextView
-            style="@style/TextAppearance.HelloWorld.Title"
-            android:id="@+id/weather_temperature_value"
-            android:text="@string/fragment_weather_temperature_value_c"
-            android:gravity="center" />
-
-            <TextView
-                style="@style/TextAppearance.HelloWorld.Title"
-                android:id="@+id/weather_temperature_unit"
-                android:text="@string/fragment_weather_temperature_unit_c"
-                android:gravity="left|center"
-                android:layout_width="@dimen/fragment_weather_temperature_unit_width"/>
-
-            <ImageView
-                android:id="@+id/weather_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/fragment_home_image_desc"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-        <Button
-            android:id="@+id/weather_loadWeatherButton"
+            android:id="@+id/fragment_weather_city_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fragment_home_setUrlButton_marginTop"
-            android:layout_marginBottom="@dimen/fragment_home_setUrlButton_marginBottom"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            app:backgroundTint="#C0C0C0"
-            app:cornerRadius="50dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="#008400"
-            android:text="@string/fragment_weather_load_weather_button_text"
-            android:textColor="#008400"
-            android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle"/>
+            android:layout_marginVertical="@dimen/fragment_weather_city_row_marginVertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main">
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/setCity_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_city_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_city_title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+                <EditText
+                    android:id="@+id/weather_city_input"
+                    style="@style/TextAppearance.HelloWorld.Title"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="@dimen/fragment_weather_city_row_height"
+                    android:hint="@string/fragment_weather_city_hint"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="text"
+                    android:gravity="left|center_vertical"
+                    tools:ignore="RtlSymmetry" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/region_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_temperature_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_region_title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+                <TextView
+                    android:id="@+id/weather_region_value"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_region_title" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_temperature_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_country_title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+                <TextView
+                    android:id="@+id/weather_country_value"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_country_title" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/temperature_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_temperature_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_temperature_title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+
+                <TextView
+                    android:id="@+id/weather_temperature_value"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_temperature_value_c" />
+
+                <TextView
+                    android:id="@+id/weather_temperature_unit"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_temperature_unit_c" />
+
+                <ImageView
+                    android:id="@+id/weather_image"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:contentDescription="@string/fragment_home_image_desc"
+                    android:gravity="left|center_vertical"
+                    android:scaleType="centerCrop" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.05" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/windKph_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_weather_temperature_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_wind_title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+
+                <TextView
+                    android:id="@+id/weather_wind_speed_value"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_temperature_value_c" />
+
+                <TextView
+                    android:id="@+id/weather_wind_speed_unit"
+                    style="@style/TextAppearance.HelloWorld.weatherRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/fragment_weather_wind_speed_unit_kph" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/fragment_weather_temperature_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fragment_home_button_row_marginVertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main">
+
+
+            <Button
+                android:id="@+id/weather_loadWeatherButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_home_setUrlButton_marginTop"
+                android:layout_marginBottom="@dimen/fragment_home_setUrlButton_marginBottom"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/fragment_weather_load_weather_button_text"
+                android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle"
+                android:textColor="#008400"
+                app:backgroundTint="#C0C0C0"
+                app:cornerRadius="50dp"
+                app:strokeColor="#008400"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

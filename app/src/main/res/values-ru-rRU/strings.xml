@@ -25,9 +25,13 @@
     <string name="fragment_home_load_image_button_text">Загрузить изображение</string>
     <string name="fragment_home_url_hint">Вставте ссылку</string>
 
-    <string name="fragment_weather_temperature_title">Температура</string>
     <string name="fragment_weather_load_weather_button_text">Загрузить пагоду</string>
+    <string name="fragment_weather_city_title">Город</string>
     <string name="fragment_weather_city_hint">Введите город</string>
+    <string name="fragment_weather_region_title">Регион</string>
+    <string name="fragment_weather_country_title">Страна</string>
+    <string name="fragment_weather_wind_title">Ветер</string>
+    <string name="fragment_weather_wind_speed_unit_kph">км/ч</string>
 
     <string name="fragment_sandbox_title">Для экспериментов</string>
 
@@ -47,6 +51,8 @@
     <string name="fragment_flags_denmark_image_desc">Изображение флага Дании</string>
     <string name="fragment_flags_switzerland">Швейцария</string>
     <string name="fragment_flags_switzerland_image_desc">Изображение флага Швейцарии</string>
+
+    <string name="splash_screen_logo_desc">Робот Андроид</string>
 
 
 </resources>

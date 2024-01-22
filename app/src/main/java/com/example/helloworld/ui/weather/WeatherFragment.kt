@@ -25,6 +25,9 @@ import java.time.format.DateTimeFormatter
 private const val KEY_TEMP_C = "KEY_TEMP_C"
 private const val KEY_CITY = "KEY_CITY"
 private const val KEY_IMAGE_URL = "KEY_IMAGE_URL"
+private const val KEY_REGION = "KEY_REGION"
+private const val KEY_COUNTRY = "KEY_COUNTRY"
+private const val KEY_WIND_SPEED_KPH = "KEY_WIND_SPEED_KPH"
 
 class WeatherFragment : Fragment() {
     private val apiKey = "5924949e16a8492b9e8184723231212"
@@ -64,12 +67,22 @@ class WeatherFragment : Fragment() {
     ): View {
 
         weatherViewModel = if (savedInstanceState == null) {
-            WeatherViewModel(null, "Tbilisi", null)
+            WeatherViewModel(
+                null,
+                "Tbilisi",
+                null,
+                null,
+                null,
+                null)
         } else {
             WeatherViewModel(
                 savedInstanceState.getFloat(KEY_TEMP_C),
                 savedInstanceState.getString(KEY_CITY)!!,
-                savedInstanceState.getString(KEY_IMAGE_URL)
+                savedInstanceState.getString(KEY_IMAGE_URL),
+                savedInstanceState.getString(KEY_REGION),
+                savedInstanceState.getString(KEY_COUNTRY),
+                savedInstanceState.getFloat(KEY_WIND_SPEED_KPH)
+
             )
         }
 
@@ -85,7 +98,10 @@ class WeatherFragment : Fragment() {
                     weatherViewModel = WeatherViewModel(
                         weather.current.tempC,
                         city,
-                        "https:" + weather.current.condition.icon
+                        "https:" + weather.current.condition.icon,
+                        weather.location.region,
+                        weather.location.country,
+                        weather.current.windKph
                     )
                     updateUi()
                 }
@@ -99,6 +115,9 @@ class WeatherFragment : Fragment() {
         binding.weatherTemperatureValue.text = weatherViewModel.tempC?.toString() ?: ""
         binding.weatherCityInput.setText(weatherViewModel.city)
         Glide.with(requireContext()).load(weatherViewModel.imageUrl).into(binding.weatherImage)
+        binding.weatherRegionValue.text = weatherViewModel.region?: ""
+        binding.weatherCountryValue.text = weatherViewModel.country?: ""
+        binding.weatherWindSpeedValue.text = weatherViewModel.windSpdKph?.toString() ?: ""
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -106,6 +125,9 @@ class WeatherFragment : Fragment() {
         weatherViewModel.tempC?.let { outState.putFloat(KEY_TEMP_C, it) }
         outState.putString(KEY_CITY, weatherViewModel.city)
         outState.putString(KEY_IMAGE_URL, weatherViewModel.imageUrl)
+        outState.putString(KEY_REGION, weatherViewModel.region)
+        outState.putString(KEY_COUNTRY, weatherViewModel.country)
+        weatherViewModel.windSpdKph?.let { outState.putFloat(KEY_WIND_SPEED_KPH, it) }
     }
 
     override fun onDestroyView() {

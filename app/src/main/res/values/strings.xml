@@ -25,11 +25,16 @@
     <string name="fragment_home_load_image_button_text">Load image</string>
     <string name="fragment_home_url_hint">Input URL</string>
 
-    <string name="fragment_weather_temperature_title">Temperature</string>
+    <string name="fragment_weather_temperature_title" translatable="false">t</string>
     <string name="fragment_weather_temperature_value_c" translatable="false">0</string>
     <string name="fragment_weather_temperature_unit_c" translatable="false">°C</string>
     <string name="fragment_weather_load_weather_button_text">Load weather</string>
+    <string name="fragment_weather_city_title">City</string>
     <string name="fragment_weather_city_hint">Input city</string>
+    <string name="fragment_weather_region_title">Region</string>
+    <string name="fragment_weather_country_title">Country</string>
+    <string name="fragment_weather_wind_title">Wind</string>
+    <string name="fragment_weather_wind_speed_unit_kph">kph</string>
 
     <string name="fragment_sandbox_title">For experiments</string>
 
@@ -49,5 +54,7 @@
     <string name="fragment_flags_denmark_image_desc">Denmark flag image</string>
     <string name="fragment_flags_switzerland">Switzerland</string>
     <string name="fragment_flags_switzerland_image_desc">Switzerland flag image</string>
+
+    <string name="splash_screen_logo_desc">Android robot</string>
 
 </resources>
