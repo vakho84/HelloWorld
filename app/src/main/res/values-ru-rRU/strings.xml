@@ -9,7 +9,7 @@
 
     <string name="menu_home">Домой</string>
     <string name="menu_weather">Погода</string>
-    <string name="menu_gallery">Галерея</string>
+    <string name="menu_flags">Флаги</string>
     <string name="menu_sandbox">Песочница</string>
     <string name="menu_about">О нас</string>
 
@@ -32,6 +32,8 @@
     <string name="fragment_weather_country_title">Страна</string>
     <string name="fragment_weather_wind_title">Ветер</string>
     <string name="fragment_weather_wind_speed_unit_kph">км/ч</string>
+    <string name="fragment_weather_animation1_desc">Погода солнце и облако</string>
+    <string name="fragment_weather_animation2_desc">Погода солнце</string>
 
     <string name="fragment_sandbox_title">Для экспериментов</string>
 

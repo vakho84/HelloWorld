@@ -1,5 +1,6 @@
 package com.example.helloworld.ui.weather
 
+import android.os.Handler
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,12 @@ import java.lang.reflect.Type
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+import java.util.*
+
+
 private const val KEY_TEMP_C = "KEY_TEMP_C"
 private const val KEY_CITY = "KEY_CITY"
 private const val KEY_IMAGE_URL = "KEY_IMAGE_URL"
@@ -35,6 +42,9 @@ class WeatherFragment : Fragment() {
     private lateinit var weatherViewModel: WeatherViewModel
 
     private val weatherApi: WeatherApi
+
+    private  var handler : Handler? = null
+    private  var runnable : Runnable? = null
 
     private var _binding: FragmentWeatherBinding? = null
     // This property is only valid between onCreateView and
@@ -66,6 +76,8 @@ class WeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+
+
         weatherViewModel = if (savedInstanceState == null) {
             WeatherViewModel(
                 null,
@@ -88,9 +100,11 @@ class WeatherFragment : Fragment() {
 
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
 
+        val swipe: SwipeRefreshLayout = binding.swipeRefreshLayout
+
         updateUi()
 
-        binding.weatherLoadWeatherButton.setOnClickListener {
+       /*   binding.weatherLoadWeatherButton.setOnClickListener {
             val city =  binding.weatherCityInput.text.toString()
             CoroutineScope(Dispatchers.IO).launch {
                 val weather = weatherApi.getWeather(apiKey, city)
@@ -106,6 +120,29 @@ class WeatherFragment : Fragment() {
                     updateUi()
                 }
             }
+        }  */
+
+        swipe.setOnRefreshListener {
+
+                // Update the data
+                val city =  binding.weatherCityInput.text.toString()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val weather = weatherApi.getWeather(apiKey, city)
+                    activity?.runOnUiThread {
+                        weatherViewModel = WeatherViewModel(
+                            weather.current.tempC,
+                            city,
+                            "https:" + weather.current.condition.icon,
+                            weather.location.region,
+                            weather.location.country,
+                            weather.current.windKph
+                        )
+                        updateUi()
+                    }
+                }
+
+                // Hide swipe to refresh icon animation
+                swipe.isRefreshing = false
         }
 
         return binding.root

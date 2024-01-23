@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_weather"
             android:title="@string/menu_weather" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_flags"
+            android:icon="@drawable/ic_menu_flags"
+            android:title="@string/menu_flags" />
         <item
             android:id="@+id/nav_sandbox"
             android:icon="@drawable/ic_menu_sandbox"

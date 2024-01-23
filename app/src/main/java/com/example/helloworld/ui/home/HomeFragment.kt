@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
-
+// Alternative for Glide
 fun ImageView.loadFromUrl(url: String) {
     apply outer@{
         object : Thread() {

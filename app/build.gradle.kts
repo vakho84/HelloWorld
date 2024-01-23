@@ -42,7 +42,9 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation ("com.airbnb.android:lottie:6.3.0")
-    implementation ("androidx.core:core-splashscreen:1.0.0-beta02")
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

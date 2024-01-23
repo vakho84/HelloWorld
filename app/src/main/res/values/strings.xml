@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_weather">Weather</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_flags">Flags</string>
     <string name="menu_sandbox">Sandbox</string>
     <string name="menu_about">About</string>
 
@@ -35,6 +35,8 @@
     <string name="fragment_weather_country_title">Country</string>
     <string name="fragment_weather_wind_title">Wind</string>
     <string name="fragment_weather_wind_speed_unit_kph">kph</string>
+    <string name="fragment_weather_animation1_desc">Weather sun and cloud</string>
+    <string name="fragment_weather_animation2_desc">Weather sun</string>
 
     <string name="fragment_sandbox_title">For experiments</string>
 
