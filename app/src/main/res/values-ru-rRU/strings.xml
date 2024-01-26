@@ -8,6 +8,7 @@
     <string name="action_settings">Настройки</string>
 
     <string name="menu_home">Домой</string>
+    <string name="menu_gallery">Галерея</string>
     <string name="menu_weather">Погода</string>
     <string name="menu_flags">Флаги</string>
     <string name="menu_sandbox">Песочница</string>
@@ -23,7 +24,10 @@
 
     <string name="fragment_home_image_desc">Загруженное изображение</string>
     <string name="fragment_home_load_image_button_text">Загрузить изображение</string>
-    <string name="fragment_home_url_hint">Вставте ссылку</string>
+
+    <string name="fragment_gallery_image_desc">Загруженное изображение</string>
+    <string name="fragment_gallery_load_image_button_text">Загрузить изображение</string>
+    <string name="fragment_gallery_url_hint">Вставте ссылку</string>
 
     <string name="fragment_weather_load_weather_button_text">Загрузить пагоду</string>
     <string name="fragment_weather_city_title">Город</string>
@@ -55,6 +59,9 @@
     <string name="fragment_flags_switzerland_image_desc">Изображение флага Швейцарии</string>
 
     <string name="splash_screen_logo_desc">Робот Андроид</string>
+
+    <string name="item_title">Заголовок</string>
+    <string name="item_image_desc">Случайная картинка</string>
 
 
 </resources>

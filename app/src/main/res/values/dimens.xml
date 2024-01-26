@@ -17,11 +17,17 @@
     <dimen name="fragment_about_switchCompat_row_marginVertical">16dp</dimen>
     <dimen name="fragment_about_button_row_marginVertical">16dp</dimen>
 
-    <dimen name="fragment_home_image_row_height">200dp</dimen>
+    <dimen name="fragment_home_recycler_view_row_height">200dp</dimen>
     <dimen name="fragment_home_button_row_layout_height">72dp</dimen>
     <dimen name="fragment_home_button_row_marginVertical">16dp</dimen>
     <dimen name="fragment_home_setUrlButton_marginTop">16dp</dimen>
     <dimen name="fragment_home_setUrlButton_marginBottom">16dp</dimen>
+
+    <dimen name="fragment_gallery_image_row_height">200dp</dimen>
+    <dimen name="fragment_gallery_button_row_layout_height">72dp</dimen>
+    <dimen name="fragment_gallery_button_row_marginVertical">16dp</dimen>
+    <dimen name="fragment_gallery_setUrlButton_marginTop">16dp</dimen>
+    <dimen name="fragment_gallery_setUrlButton_marginBottom">16dp</dimen>
 
     <dimen name="fragment_weather_city_row_marginVertical">16dp</dimen>
     <dimen name="fragment_weather_temperature_unit_width">32dp</dimen>
@@ -33,6 +39,14 @@
     <dimen name="fragment_weather_temperatureValue_width">168dp</dimen>
 
     <dimen name="fragment_flags_row_height">32dp</dimen>
+
+    <dimen name="item_row_height">392dp</dimen>
+    <dimen name="item_image_height">220dp</dimen>
+    <dimen name="item_space_height">10dp</dimen>
+    <dimen name="item_text_height">32dp</dimen>
+    <dimen name="item_layout_margin">4dp</dimen>
+    <dimen name="item_marginVertical">4dp</dimen>
+    <dimen name="item_marginHorizontal">16dp</dimen>
 
 
 
