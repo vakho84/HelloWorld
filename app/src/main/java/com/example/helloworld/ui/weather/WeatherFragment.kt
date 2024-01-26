@@ -1,6 +1,6 @@
 package com.example.helloworld.ui.weather
 
-import android.os.Handler
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,10 +23,8 @@ import java.lang.reflect.Type
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-import java.util.*
 
 
 private const val KEY_TEMP_C = "KEY_TEMP_C"
@@ -43,8 +41,6 @@ class WeatherFragment : Fragment() {
 
     private val weatherApi: WeatherApi
 
-    private  var handler : Handler? = null
-    private  var runnable : Runnable? = null
 
     private var _binding: FragmentWeatherBinding? = null
     // This property is only valid between onCreateView and
