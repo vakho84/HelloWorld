@@ -50,8 +50,5 @@
         android:layout_marginVertical="@dimen/item_marginVertical"
         android:layout_marginHorizontal="@dimen/item_marginHorizontal"/>
 
-
-
-
 </LinearLayout>
 

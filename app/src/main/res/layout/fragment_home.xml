@@ -37,8 +37,6 @@
             android:text="@string/fragment_home_load_image_button_text"
             android:textColor="#008400"
             android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle" />
-
        -->
-
     </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
