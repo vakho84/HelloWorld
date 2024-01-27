@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeSwipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout_home"
@@ -23,24 +22,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/fragment_home_image_desc" />
 
-        <!--   <ImageView
-               android:id="@+id/home_image_view"
-               android:layout_width="match_parent"
-               android:layout_height="150dp"
-               android:contentDescription="@string/fragment_gallery_image_desc"
-               android:layout_margin="32dp"/>
-
-            <TextView
-               android:id="@+id/home_tV"
-               style="@style/TextAppearance.HelloWorld.flagsRows"
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/item_text_height"
-               android:gravity="center_vertical|center_horizontal"
-               android:text="@string/item_title"
-               android:layout_marginVertical="@dimen/item_marginVertical"
-               android:layout_marginHorizontal="@dimen/item_marginHorizontal"/>
-   -->
-        <Button
+      <!--  <Button
             android:id="@+id/home_loadImageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,5 +38,7 @@
             android:textColor="#008400"
             android:textAppearance="@style/TextAppearance.HelloWorld.ButtonTitle" />
 
+       -->
+
     </LinearLayout>
-</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

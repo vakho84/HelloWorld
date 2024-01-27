@@ -14,6 +14,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Checkbox" parent="Theme.HelloWorld">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/red</item>
+    </style>
+
     <style name="Theme.HelloWorld.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

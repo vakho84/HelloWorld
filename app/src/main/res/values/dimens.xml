@@ -47,6 +47,9 @@
     <dimen name="item_layout_margin">4dp</dimen>
     <dimen name="item_marginVertical">4dp</dimen>
     <dimen name="item_marginHorizontal">16dp</dimen>
+    <dimen name="item_favCheckboxHeight">32dp</dimen>
+    <dimen name="item_favCheckboxWidth">32dp</dimen>
+
 
 
 

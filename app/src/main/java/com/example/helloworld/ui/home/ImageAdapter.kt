@@ -9,7 +9,7 @@ import com.example.helloworld.R
 import com.example.helloworld.data.Image
 import com.example.helloworld.databinding.ImageItemBinding
 
-class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
+class ImageAdapter() : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
   private  val imageVmList = ArrayList<HomeViewModel>()
 
     class ImageHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -37,6 +37,7 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
 
     fun addImage(imageVm: HomeViewModel) {
         imageVmList.add(imageVm)
+     // imageVmList.addAll()
         notifyDataSetChanged()
     }
 }

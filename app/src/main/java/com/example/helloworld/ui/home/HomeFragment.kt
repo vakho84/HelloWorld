@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.helloworld.databinding.FragmentHomeBinding
 import com.example.helloworld.retrofit.ImageApi
 import kotlinx.coroutines.CoroutineScope
@@ -18,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val KEY_AUTHOR = "KEY_AUTHOR"
 private const val KEY_DOWNLOAD_URL = "KEY_DOWNLOAD_URL"
+
 
 class HomeFragment : Fragment() {
 
@@ -58,29 +59,45 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val swipe: SwipeRefreshLayout = binding.homeSwipeRefreshLayout
 
-
-
-        binding.homeLoadImageButton.setOnClickListener {
+         var i = 0
+    /*    binding.homeLoadImageButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val image = imageApi.getImage()
+                val image = imageApi.getImage(i)
+                i+=10
                 activity?.runOnUiThread {
                     homeViewModel = HomeViewModel(
                         image.author,
                         image.download_url
                     )
-                    updateUi()
                     initHomeRecyclerView()
                 }
             }
         }
+    */
+
+        swipe.setOnRefreshListener {
+
+            // Update the data
+            CoroutineScope(Dispatchers.IO).launch {
+                val image = imageApi.getImage(i)
+                i+=10
+                activity?.runOnUiThread {
+                    homeViewModel = HomeViewModel(
+                        image.author,
+                        image.download_url
+                    )
+                    initHomeRecyclerView()
+                }
+            }
+            // Hide swipe to refresh icon animation
+            swipe.isRefreshing = false
+        }
+
+
 
         return root
-    }
-
-    private fun updateUi() {
-      //  binding.homeTV.text = homeViewModel.author
-      //  Glide.with(requireContext()).load(homeViewModel.download_url).into(binding.homeImageView)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

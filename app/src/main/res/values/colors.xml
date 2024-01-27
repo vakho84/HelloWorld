@@ -13,4 +13,6 @@
     <color name="list_item_selected">#008400</color>
     <color name="list_item_unselected">#FFFF</color>
 
+    <color name="red">#FF0000</color>
+
 </resources>
