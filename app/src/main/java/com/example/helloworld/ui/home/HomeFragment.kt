@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.FragmentHomeBinding
-import com.example.helloworld.retrofit.ImageApi
+import com.example.helloworld.retrofit.ImageListApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,20 +24,34 @@ private const val KEY_DOWNLOAD_URL = "KEY_DOWNLOAD_URL"
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val imageApi: ImageApi
+
+    // private val imageApi: ImageApi
+    private val imageListApi: ImageListApi
+    private val limit = "5"
+    private val page = "30"
+
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var listOfImageObjects: ArrayList<ImageObject>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private val adapter = ImageAdapter()
 
+    /*  init {
+          val retrofit = Retrofit.Builder()
+              .baseUrl("https://picsum.photos")
+              .addConverterFactory(GsonConverterFactory.create())
+              .build()
+          imageApi = retrofit.create(ImageApi::class.java)
+      }
+   */
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://picsum.photos")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        imageApi = retrofit.create(ImageApi::class.java)
+        imageListApi = retrofit.create(ImageListApi::class.java)
     }
 
     override fun onCreateView(
@@ -61,41 +76,41 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         val swipe: SwipeRefreshLayout = binding.homeSwipeRefreshLayout
 
-         var i = 0
-    /*    binding.homeLoadImageButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                val image = imageApi.getImage(i)
-                i+=10
-                activity?.runOnUiThread {
-                    homeViewModel = HomeViewModel(
-                        image.author,
-                        image.download_url
-                    )
-                    initHomeRecyclerView()
-                }
-            }
-        }
-    */
 
+        /*     swipe.setOnRefreshListener {
+                 // Update the data
+                 CoroutineScope(Dispatchers.IO).launch {
+                     val image = imageApi.getOneImage(i)
+                     i+=10
+                     activity?.runOnUiThread {
+                         homeViewModel = HomeViewModel(
+                             image.author,
+                             image.download_url
+                         )
+                         initHomeRecyclerView()
+                     }
+                 }
+                 // Hide swipe to refresh icon animation
+                 swipe.isRefreshing = false
+             }
+     */
         swipe.setOnRefreshListener {
-
             // Update the data
             CoroutineScope(Dispatchers.IO).launch {
-                val image = imageApi.getImage(i)
-                i+=10
+                val imageList = imageListApi.getImageList(page, limit)
                 activity?.runOnUiThread {
-                    homeViewModel = HomeViewModel(
-                        image.author,
-                        image.download_url
-                    )
+                    val arraySize = imageList.size
+                    listOfImageObjects = ArrayList(arraySize)
+                    //  listOfImageObjects.removeAll(imageList)
+
+                    listOfImageObjects.addAll(0, imageList)
                     initHomeRecyclerView()
+
                 }
             }
             // Hide swipe to refresh icon animation
             swipe.isRefreshing = false
         }
-
-
 
         return root
     }
@@ -116,8 +131,11 @@ class HomeFragment : Fragment() {
             homeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             homeRecyclerView.adapter = adapter
 
-            val imageVm = HomeViewModel(homeViewModel.author, homeViewModel.download_url)
-            adapter.addImage(imageVm)
+            //    val imageVm = HomeViewModel(homeViewModel.author, homeViewModel.download_url)
+            //    var imageVmList: HomeViewModelList
+            //    adapter.addImage(imageVm)
+
+            adapter.addImage(listOfImageObjects)
 
         }
     }

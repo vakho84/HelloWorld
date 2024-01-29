@@ -1,6 +1,6 @@
 package com.example.helloworld.data
 
-data class Image(
+data class ImageObject(
     val id: Int,
     val author: String,
     val width: Int,

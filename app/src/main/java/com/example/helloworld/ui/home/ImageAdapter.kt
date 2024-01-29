@@ -6,19 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.helloworld.R
-import com.example.helloworld.data.Image
+import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.ImageItemBinding
 
 class ImageAdapter() : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
-  private  val imageVmList = ArrayList<HomeViewModel>()
+  private  val imageVmList = ArrayList<ImageObject>()
 
     class ImageHolder(item: View) : RecyclerView.ViewHolder(item) {
 
       private  val binding = ImageItemBinding.bind(item)
 
-        fun bind(imageVm: HomeViewModel) = with(binding) {
+        fun bind(imageVm: ImageObject) = with(binding) {
             binding.tV.text = imageVm.author
             Glide.with(this.im).load(imageVm.download_url).into(binding.im)
+
+            binding.im.setOnClickListener{}
         }
     }
 
@@ -35,9 +37,17 @@ class ImageAdapter() : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
         holder.bind(imageVmList[position])
     }
 
-    fun addImage(imageVm: HomeViewModel) {
+   /* fun addImage(imageVm: HomeViewModel) {
         imageVmList.add(imageVm)
-     // imageVmList.addAll()
         notifyDataSetChanged()
     }
+   */
+
+
+    fun addImage(imageVm: ArrayList<ImageObject>) {
+        imageVmList.clear()
+        imageVmList.addAll(imageVm)
+        notifyDataSetChanged()
+    }
+
 }

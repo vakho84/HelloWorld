@@ -1,6 +1,7 @@
 package com.example.helloworld.ui.home
 
 data class HomeViewModel(
-    val author: String?,
-    val download_url: String?,
+    var author: String?,
+    var download_url: String?,
 )
+

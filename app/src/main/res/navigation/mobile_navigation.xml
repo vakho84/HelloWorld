@@ -30,10 +30,10 @@
         tools:layout="@layout/fragment_flags" />
 
     <fragment
-        android:id="@+id/nav_sandbox"
-        android:name="com.example.helloworld.ui.sandbox.SandboxFragment"
-        android:label="@string/menu_sandbox"
-        tools:layout="@layout/fragment_sandbox" />
+        android:id="@+id/nav_favorites"
+        android:name="com.example.helloworld.ui.favorites.FavoritesFragment"
+        android:label="@string/menu_favorites"
+        tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/nav_about"

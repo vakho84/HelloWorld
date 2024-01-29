@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.sandbox
+package com.example.helloworld.ui.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.helloworld.databinding.FragmentSandboxBinding
+import com.example.helloworld.databinding.FragmentFavoritesBinding
 
-class SandboxFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
-    private var _binding: FragmentSandboxBinding? = null
+    private var _binding: FragmentFavoritesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,7 +22,7 @@ class SandboxFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentSandboxBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val austriaUrl = "https://cdn.iconscout.com/icon/free/png-512/free-austria-flag-country-nation-union-empire-32920.png?f=webp&w=512"
         val polandUrl = "https://cdn.iconscout.com/icon/free/png-512/free-poland-flag-country-nation-union-empire-33057.png?f=webp&w=512"
