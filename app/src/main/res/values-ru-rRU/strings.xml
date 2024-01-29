@@ -58,10 +58,19 @@
     <string name="fragment_flags_switzerland">Швейцария</string>
     <string name="fragment_flags_switzerland_image_desc">Изображение флага Швейцарии</string>
 
+    <string name="fragment_details_image_id">Ид</string>
+    <string name="fragment_details_image_author">Автор</string>
+    <string name="fragment_details_image_width">Ширина</string>
+    <string name="fragment_details_image_height">Высота</string>
+    <string name="fragment_details_image_url">Ссылка</string>
+    <string name="fragment_details_image_download_url">Ссылка для скачивания</string>
+    <string name="fragment_details_image_hint">Загруженное изображение</string>
+
     <string name="splash_screen_logo_desc">Робот Андроид</string>
 
     <string name="item_title">Заголовок</string>
     <string name="item_image_desc">Случайная картинка</string>
+    <string name="menu_details">Детали</string>
 
 
 </resources>

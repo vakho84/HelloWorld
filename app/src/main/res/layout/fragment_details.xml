@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/content_paddingVertical_main">
+
+
+        <LinearLayout
+            android:id="@+id/fragment_details_image_row"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginVertical="@dimen/fragment_about_button_row_marginVertical"
+            android:layout_gravity="start|center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main">
+
+            <ImageView
+                android:id="@+id/fragment_details_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/fragment_gallery_image_desc"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_details_info_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fragment_weather_city_row_marginVertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/content_paddingHorizontal_main">
+
+            <LinearLayout
+                android:id="@+id/fragment_details_id_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_id" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_id_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.55"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_details_image_author_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_author" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_author_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.55"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_details_image_width_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_width" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_width_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.45"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_width_height_unit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_details_image_height_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_height" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_height_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.45"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_width_height_unit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_details_url_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_download_url_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_height="@dimen/fragment_details_url_tW_height"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_url" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_url_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_height="@dimen/fragment_details_url_tW_height"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.55"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_details_download_url_row"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_details_download_url_row_height"
+                android:layout_marginVertical="@dimen/fragment_weather_row_marginVertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_height="@dimen/fragment_details_url_tW_height"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/fragment_details_image_download_url" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.08" />
+
+                <TextView
+                    android:id="@+id/fragment_details_download_url_value"
+                    style="@style/TextAppearance.HelloWorld.detailsRows"
+                    android:layout_height="@dimen/fragment_details_url_tW_height"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.55"
+                    android:gravity="start|center_vertical"
+                    android:text="" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

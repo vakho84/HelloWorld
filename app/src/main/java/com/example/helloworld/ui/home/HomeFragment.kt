@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.helloworld.R
 import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.FragmentHomeBinding
 import com.example.helloworld.retrofit.ImageListApi
+import com.example.helloworld.ui.details.DetailsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.function.Consumer
 
 
 private const val KEY_AUTHOR = "KEY_AUTHOR"
@@ -36,7 +41,9 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val adapter = ImageAdapter()
+    private val adapter = ImageAdapter {
+         findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(it))
+    }
 
     /*  init {
           val retrofit = Retrofit.Builder()
@@ -75,6 +82,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val swipe: SwipeRefreshLayout = binding.homeSwipeRefreshLayout
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val imageList = imageListApi.getImageList(page, limit)
+            activity?.runOnUiThread {
+                val arraySize = imageList.size
+                listOfImageObjects = ArrayList(arraySize)
+                //  listOfImageObjects.removeAll(imageList)
+
+                listOfImageObjects.addAll(0, imageList)
+                initHomeRecyclerView()
+
+            }
+        }
 
 
         /*     swipe.setOnRefreshListener {

@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+    <string name="menu_details">Details</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_weather">Weather</string>
     <string name="menu_flags">Flags</string>
@@ -60,6 +61,17 @@
     <string name="fragment_flags_denmark_image_desc">Denmark flag image</string>
     <string name="fragment_flags_switzerland">Switzerland</string>
     <string name="fragment_flags_switzerland_image_desc">Switzerland flag image</string>
+
+    <string name="fragment_details_image_id" >Id</string>
+    <string name="fragment_details_image_author" >Author</string>
+    <string name="fragment_details_image_width" >width</string>
+    <string name="fragment_details_image_height" >height</string>
+    <string name="fragment_details_image_url" >Url</string>
+    <string name="fragment_details_image_download_url" >Download url</string>
+    <string name="fragment_details_image_width_height_unit" translatable="false">dp</string>
+    fragment_details_image_author
+    <string name="fragment_details_image_hint">Loaded image</string>
+
 
     <string name="splash_screen_logo_desc">Android robot</string>
 

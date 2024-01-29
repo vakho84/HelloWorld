@@ -8,25 +8,28 @@ import com.bumptech.glide.Glide
 import com.example.helloworld.R
 import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.ImageItemBinding
+import java.util.function.Consumer
 
-class ImageAdapter() : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
-  private  val imageVmList = ArrayList<ImageObject>()
+class ImageAdapter(val clickHandler: Consumer<Int>) : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
+    private val imageVmList = ArrayList<ImageObject>()
 
-    class ImageHolder(item: View) : RecyclerView.ViewHolder(item) {
-
-      private  val binding = ImageItemBinding.bind(item)
+    class ImageHolder(item: View, val parent: ImageAdapter) : RecyclerView.ViewHolder(item) {
+        private  val binding = ImageItemBinding.bind(item)
 
         fun bind(imageVm: ImageObject) = with(binding) {
             binding.tV.text = imageVm.author
             Glide.with(this.im).load(imageVm.download_url).into(binding.im)
 
-            binding.im.setOnClickListener{}
+            binding.im.setOnClickListener {
+                val clickedImageId: Int = imageVm.id
+                this@ImageHolder.parent.clickHandler.accept(clickedImageId)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
-        return ImageHolder(view)
+        return ImageHolder(view, this)
     }
 
     override fun getItemCount(): Int {

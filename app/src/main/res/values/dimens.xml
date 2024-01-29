@@ -50,6 +50,10 @@
     <dimen name="item_favCheckboxHeight">32dp</dimen>
     <dimen name="item_favCheckboxWidth">32dp</dimen>
 
+    <dimen name="fragment_details_row_height">32dp</dimen>
+    <dimen name="fragment_details_download_url_row_height">64dp</dimen>
+    <dimen name="fragment_details_url_tW_height">56dp</dimen>
+
 
 
 
