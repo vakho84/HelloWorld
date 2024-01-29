@@ -1,4 +1,4 @@
-package com.example.helloworld.retrofit
+package com.example.helloworld.data
 
 import java.time.LocalDateTime
 

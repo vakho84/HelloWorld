@@ -1,5 +1,6 @@
 package com.example.helloworld.retrofit
 
+import com.example.helloworld.data.WeatherResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 

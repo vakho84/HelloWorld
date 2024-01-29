@@ -30,12 +30,11 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    // private val imageApi: ImageApi
     private val imageListApi: ImageListApi
     private val limit = "5"
     private val page = "30"
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var homeViewModel: HomeViewModel? = null
     private lateinit var listOfImageObjects: ArrayList<ImageObject>
 
     // This property is only valid between onCreateView and
@@ -75,7 +74,7 @@ class HomeFragment : Fragment() {
         } else {
             HomeViewModel(
                 savedInstanceState.getString(KEY_AUTHOR),
-                savedInstanceState.getString(KEY_DOWNLOAD_URL)!!,
+                savedInstanceState.getString(KEY_DOWNLOAD_URL),
             )
         }
 
@@ -138,8 +137,8 @@ class HomeFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(KEY_AUTHOR, homeViewModel.author)
-        outState.putString(KEY_DOWNLOAD_URL, homeViewModel.download_url)
+        outState.putString(KEY_AUTHOR, homeViewModel?.author)
+        outState.putString(KEY_DOWNLOAD_URL, homeViewModel?.download_url)
     }
 
     override fun onDestroyView() {
