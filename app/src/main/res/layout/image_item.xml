@@ -12,14 +12,15 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/item_image_width"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <TextView
             android:id="@+id/tV"
             style="@style/TextAppearance.HelloWorld.flagsRows"
-            android:layout_weight="0.7"
+            android:layout_weight="0.6"
             android:layout_width="0dp"
             android:layout_height="@dimen/item_text_height"
             android:gravity="center_vertical|start"
@@ -37,12 +38,14 @@
             tools:ignore="RtlSymmetry" />
 
 
+
+
     </LinearLayout>
 
 
     <ImageView
         android:id="@+id/im"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/item_image_width"
         android:layout_height="@dimen/item_image_height"
         android:layout_gravity="center"
         android:scaleType="fitCenter"

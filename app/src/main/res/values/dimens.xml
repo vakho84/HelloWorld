@@ -41,20 +41,22 @@
     <dimen name="fragment_flags_row_height">32dp</dimen>
 
     <dimen name="item_row_height">392dp</dimen>
+    <dimen name="item_image_width">300dp</dimen>
     <dimen name="item_image_height">220dp</dimen>
     <dimen name="item_space_height">10dp</dimen>
     <dimen name="item_text_height">32dp</dimen>
     <dimen name="item_layout_margin">4dp</dimen>
     <dimen name="item_marginVertical">4dp</dimen>
-    <dimen name="item_marginHorizontal">16dp</dimen>
+    <dimen name="item_marginHorizontal">8dp</dimen>
     <dimen name="item_favCheckboxHeight">32dp</dimen>
     <dimen name="item_favCheckboxWidth">32dp</dimen>
 
     <dimen name="fragment_details_row_height">32dp</dimen>
     <dimen name="fragment_details_download_url_row_height">64dp</dimen>
     <dimen name="fragment_details_url_tW_height">56dp</dimen>
+    <dimen name="fragment_details_image_row_width">300dp</dimen>
+    <dimen name="fragment_details_image_row_height">220dp</dimen>
+    <dimen name="fragment_details_paddingHorizontal">8dp</dimen>
 
-
-
-
+    
 </resources>

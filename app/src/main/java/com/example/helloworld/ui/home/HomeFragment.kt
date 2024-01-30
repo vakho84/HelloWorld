@@ -4,23 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.helloworld.R
 import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.FragmentHomeBinding
 import com.example.helloworld.retrofit.ImageListApi
-import com.example.helloworld.ui.details.DetailsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.function.Consumer
-
 
 private const val KEY_AUTHOR = "KEY_AUTHOR"
 private const val KEY_DOWNLOAD_URL = "KEY_DOWNLOAD_URL"
@@ -43,15 +38,7 @@ class HomeFragment : Fragment() {
     private val adapter = ImageAdapter {
          findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(it))
     }
-
-    /*  init {
-          val retrofit = Retrofit.Builder()
-              .baseUrl("https://picsum.photos")
-              .addConverterFactory(GsonConverterFactory.create())
-              .build()
-          imageApi = retrofit.create(ImageApi::class.java)
-      }
-   */
+    
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://picsum.photos")
