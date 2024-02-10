@@ -33,14 +33,6 @@ class FavoritesFragment : Fragment() {
         val denmarkUrl = "https://cdn.iconscout.com/icon/free/png-512/free-denmark-flag-country-nation-union-empire-32955.png?f=webp&w=512"
         val switzerlandUrl = "https://cdn.iconscout.com/icon/free/png-512/free-switzerland-flag-country-nation-union-empire-33095.png?f=webp&w=512"
 
-        Glide.with(this).load(austriaUrl).into(binding.austriaFlag)
-        Glide.with(this).load(polandUrl).into(binding.polandFlag)
-        Glide.with(this).load(italyUrl).into(binding.italyFlag)
-        Glide.with(this).load(colombiaUrl).into(binding.colombiaFlag)
-        Glide.with(this).load(madagascarUrl).into(binding.madagascarFlag)
-        Glide.with(this).load(thailandUrl).into(binding.thailandFlag)
-        Glide.with(this).load(denmarkUrl).into(binding.denmarkFlag)
-        Glide.with(this).load(switzerlandUrl).into(binding.switzerlandFlag)
 
         return root
     }

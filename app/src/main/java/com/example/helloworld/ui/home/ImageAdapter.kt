@@ -3,18 +3,21 @@ package com.example.helloworld.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.helloworld.R
 import com.example.helloworld.data.ImageObject
 import com.example.helloworld.databinding.ImageItemBinding
+
 import java.util.function.Consumer
 
-class ImageAdapter(val clickHandler: Consumer<Int>) : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
+class ImageAdapter(val clickHandler: Consumer<Int>, val checkBoxClickHandler: Function5<Int, Boolean, String, String, ImageView, Unit>) : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
     private val imageVmList = ArrayList<ImageObject>()
 
-    class ImageHolder(item: View, val parent: ImageAdapter) : RecyclerView.ViewHolder(item) {
-        private  val binding = ImageItemBinding.bind(item)
+
+    class ImageHolder(item: View, private val parent: ImageAdapter) : RecyclerView.ViewHolder(item) {
+        private val binding = ImageItemBinding.bind(item)
 
         fun bind(imageVm: ImageObject) = with(binding) {
             binding.tV.text = imageVm.author
@@ -24,6 +27,13 @@ class ImageAdapter(val clickHandler: Consumer<Int>) : RecyclerView.Adapter<Image
                 val clickedImageId: Int = imageVm.id
                 this@ImageHolder.parent.clickHandler.accept(clickedImageId)
             }
+
+            binding.favCheckbox.setOnCheckedChangeListener { _, checked ->
+               // val imageV: ImageView = this.im
+
+                this@ImageHolder.parent.checkBoxClickHandler.invoke(imageVm.id, checked, imageVm.author, imageVm.download_url, binding.im)
+            }
+
         }
     }
 
@@ -40,12 +50,11 @@ class ImageAdapter(val clickHandler: Consumer<Int>) : RecyclerView.Adapter<Image
         holder.bind(imageVmList[position])
     }
 
-   /* fun addImage(imageVm: HomeViewModel) {
-        imageVmList.add(imageVm)
-        notifyDataSetChanged()
-    }
-   */
-
+    /* fun addImage(imageVm: HomeViewModel) {
+         imageVmList.add(imageVm)
+         notifyDataSetChanged()
+     }
+    */
 
     fun addImage(imageVm: ArrayList<ImageObject>) {
         imageVmList.clear()

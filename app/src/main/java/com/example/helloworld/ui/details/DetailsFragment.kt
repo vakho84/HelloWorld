@@ -99,7 +99,7 @@ class DetailsFragment : Fragment() {
     private fun updateUi() {
         Glide.with(requireContext()).load(detailsViewModel.download_url).into(binding.fragmentDetailsImageView)
         binding.fragmentDetailsIdValue.text = detailsViewModel.id?.toString() ?: ""
-        binding.fragmentDetailsAuthorValue.setText(detailsViewModel.author)
+        binding.fragmentDetailsAuthorValue.text = (detailsViewModel.author) ?: ""
         binding.fragmentDetailsWidthValue.text = detailsViewModel.width ?: ""
         binding.fragmentDetailsHeightValue.text = detailsViewModel.height ?: ""
         binding.fragmentDetailsUrlValue.text = detailsViewModel.url ?: ""

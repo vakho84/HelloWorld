@@ -78,4 +78,6 @@
     <string name="item_title">Title</string>
     <string name="item_image_desc">Random image</string>
 
+    <string name="favorite_image_item_desc">Favorite image</string>
+
 </resources>

@@ -2,11 +2,13 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
+
 
 android {
     namespace = "com.example.helloworld"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.helloworld"
@@ -16,6 +18,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField("String", "MY_API_KEY", "\"5924949e16a8492b9e8184723231212\"")
+
     }
 
     buildTypes {
@@ -35,6 +41,10 @@ android {
         viewBinding = true
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
 }
 
 dependencies {
@@ -46,6 +56,12 @@ dependencies {
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

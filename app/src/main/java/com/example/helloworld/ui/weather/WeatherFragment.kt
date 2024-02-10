@@ -24,7 +24,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
+import com.example.helloworld.BuildConfig
 
 
 private const val KEY_TEMP_C = "KEY_TEMP_C"
@@ -35,7 +35,8 @@ private const val KEY_COUNTRY = "KEY_COUNTRY"
 private const val KEY_WIND_SPEED_KPH = "KEY_WIND_SPEED_KPH"
 
 class WeatherFragment : Fragment() {
-    private val apiKey = "5924949e16a8492b9e8184723231212"
+   // private val apiKey = "5924949e16a8492b9e8184723231212"
+      private val apiKey = BuildConfig.MY_API_KEY
 
     private lateinit var weatherViewModel: WeatherViewModel
 
