@@ -5,36 +5,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.example.helloworld.databinding.FragmentFavoritesBinding
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.helloworld.HelloWorldApp
+import com.example.helloworld.databinding.FragmentImageListBinding
+import com.example.helloworld.ui.ImageAdapter
+import com.example.helloworld.ui.home.HomeFragmentDirections
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FavoritesFragment : Fragment() {
+    private var _binding: FragmentImageListBinding? = null
 
-    private var _binding: FragmentFavoritesBinding? = null
+    private val favoritesViewModel: FavoritesViewModel by viewModels { FavoritesViewModel.Factory }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
+    private val adapter = ImageAdapter(
+        { findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(it)) },
+        { imageObject -> CoroutineScope(Dispatchers.IO).launch {
+            favoritesViewModel.update(imageObject)
+        } },
+        { (requireContext().applicationContext as HelloWorldApp).storage.getUrl(it.id, it.downloadUrl) }
+    )
+
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentImageListBinding.inflate(inflater, container, false)
 
-        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        val austriaUrl = "https://cdn.iconscout.com/icon/free/png-512/free-austria-flag-country-nation-union-empire-32920.png?f=webp&w=512"
-        val polandUrl = "https://cdn.iconscout.com/icon/free/png-512/free-poland-flag-country-nation-union-empire-33057.png?f=webp&w=512"
-        val italyUrl = "https://cdn.iconscout.com/icon/free/png-512/free-italy-flag-country-nation-union-empire-32999.png?f=webp&w=512"
-        val colombiaUrl = "https://cdn.iconscout.com/icon/free/png-512/free-colombia-flag-country-nation-union-empire-32946.png?f=webp&w=512"
-        val madagascarUrl = "https://cdn.iconscout.com/icon/free/png-512/free-madagascar-flag-country-nation-union-empire-33042.png?f=webp&w=512"
-        val thailandUrl = "https://cdn.iconscout.com/icon/free/png-512/free-thailand-flag-country-nation-union-empire-33102.png?f=webp&w=512"
-        val denmarkUrl = "https://cdn.iconscout.com/icon/free/png-512/free-denmark-flag-country-nation-union-empire-32955.png?f=webp&w=512"
-        val switzerlandUrl = "https://cdn.iconscout.com/icon/free/png-512/free-switzerland-flag-country-nation-union-empire-33095.png?f=webp&w=512"
+        val swipe = binding.homeSwipeRefreshLayout
+        val homeRecyclerView = binding.homeRecyclerView
 
+        homeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        homeRecyclerView.adapter = adapter
 
-        return root
+        swipe.isEnabled = false
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        favoritesViewModel.getList().observe(viewLifecycleOwner) { adapter.addImage(it) }
     }
 
     override fun onDestroyView() {

@@ -5,13 +5,27 @@ import android.content.res.Resources
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.helloworld.data.AppSharedPreferencesDataSource
+import com.example.helloworld.data.room.FavoritesDb
+import com.example.helloworld.data.room.ImageObjectDao
+import com.example.helloworld.fileManagment.Storage
+import com.example.helloworld.fileManagment.StorageMethods
 import com.example.helloworld.model.AppSettingsRepository
 import com.example.helloworld.model.HelloWorldTheme
+import com.example.helloworld.retrofit.ImageListApi
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale
 
 class HelloWorldApp : Application() {
+    private lateinit var _storage: Storage
+    private lateinit var _imageListApi: ImageListApi
+    private lateinit var _imageObjectDao: ImageObjectDao
 
     private lateinit var appSettingsRepository: AppSettingsRepository
+
+    val storage get() = _storage
+    val imageListApi get() = _imageListApi
+    val imageObjectDao get() = _imageObjectDao
 
     companion object {
         fun changeTheme(theme: HelloWorldTheme?) {
@@ -40,7 +54,6 @@ class HelloWorldApp : Application() {
             }
         }
 
-
         private fun findLanguage(systemLocales: LocaleList, language: String): Int {
             for (i in 0 until systemLocales.size()) {
                 val locale = systemLocales[0]
@@ -54,6 +67,16 @@ class HelloWorldApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://picsum.photos")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        _imageListApi = retrofit.create(ImageListApi::class.java)
+
+        _imageObjectDao = FavoritesDb.getDb(this).getDao()
+
+        _storage = StorageMethods(this)
 
         val appPreferences = AppSharedPreferencesDataSource(this)
         appSettingsRepository = AppSettingsRepository(appPreferences)

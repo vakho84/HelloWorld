@@ -1,6 +1,5 @@
-package com.example.helloworld.ui.home
+package com.example.helloworld.ui.favorites
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,16 +10,11 @@ import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.data.room.ImageObjectDao
 import com.example.helloworld.data.room.ImageObjectLocal
 import com.example.helloworld.data.room.toEntity
-import com.example.helloworld.data.toLocal
 import com.example.helloworld.fileManagment.Storage
 import com.example.helloworld.model.ImageObjectEntity
-import com.example.helloworld.retrofit.ImageListApi
 import kotlinx.coroutines.flow.map
 
-const val TAG = "HomeViewModel"
-
-class HomeViewModel(
-    private val imageListApi: ImageListApi,
+class FavoritesViewModel(
     private val imageObjectDao: ImageObjectDao,
     private val storage: Storage
 ) : ViewModel() {
@@ -33,8 +27,7 @@ class HomeViewModel(
             ): T {
                 // Get the Application object from extras
                 val application = checkNotNull(extras[APPLICATION_KEY]) as HelloWorldApp
-                return HomeViewModel(
-                    application.imageListApi,
+                return FavoritesViewModel(
                     application.imageObjectDao,
                     application.storage
                 ) as T
@@ -42,26 +35,9 @@ class HomeViewModel(
         }
     }
 
-    private val limit = "5"
-    private val page = "30"
-
-    fun getList(): LiveData<List<ImageObjectEntity>> = imageObjectDao.getAllImageObjects().map {
+    fun getList(): LiveData<List<ImageObjectEntity>> = imageObjectDao.getFavorites().map {
         it.map { imageObjectDb -> imageObjectDb.toEntity() }
     }.asLiveData()
-
-    suspend fun refresh() {
-        try {
-            val imageList = imageListApi.getImageList(page, limit)
-            imageList.forEach { imageObjectWeb ->
-                val imageObjectLocal = imageObjectDao.loadById(imageObjectWeb.id)
-                imageObjectDao.insertImageObject(
-                    imageObjectWeb.toLocal(imageObjectLocal?.isFavorite ?: false)
-                )
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error loading images from the web", e)
-        }
-    }
 
     suspend fun update(imageObjectEntity: ImageObjectEntity) {
         imageObjectDao.insertImageObject(

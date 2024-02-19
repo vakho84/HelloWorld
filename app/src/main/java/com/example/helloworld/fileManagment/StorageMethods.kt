@@ -1,85 +1,52 @@
 package com.example.helloworld.fileManagment
 
 import android.content.Context
-import android.content.ContextWrapper
-import android.graphics.Bitmap
+import android.util.Log
+import androidx.core.net.toUri
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.net.URL
 
+const val TAG = "StorageMethods"
 
-class StorageMethods : Storage {
-
-    /* override fun saveImageToDevice(imageView: ImageView, id: Int, context: Context?) {
-        val fileName: String = id.toString()
-        // Get the drawable from the ImageView
-        val drawable = imageView.drawable
-
-        // Create a bitmap from the drawable
-        val bitmap = (drawable as BitmapDrawable).bitmap
-
-        // Get the path to the device's gallery
-        val directoryPath =
-            Environment.getExternalStorageDirectory().toString() + File.separator + Environment.DIRECTORY_DOWNLOADS + File.separator + "HelloWorld"
-
-        // Create a file to save the image
-        val file = File(directoryPath, "$fileName.jpg")
-
-        try {
-            // Create an output stream to write the bitmap to the file
-            val outputStream = FileOutputStream(file)
-
-            // Compress the bitmap and write it to the output stream
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-
-            // Flush and close the output stream
-            outputStream.flush()
-            outputStream.close()
-
-            // Notify the media scanner about the new image
-
-            MediaScannerConnection.scanFile(
-                context,  //applicationContext
-                arrayOf(file.toString()),
-                null,
-                null
-            )
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+class StorageMethods(
+    val context: Context,
+    private val imageDir: File = context.getDir("imageDir", Context.MODE_PRIVATE)
+) : Storage {
+    init {
+        imageDir.mkdirs()
     }
-*/
 
-    override fun saveToInternalStorage(bitmapImage: Bitmap, id: Int, context: Context): String? {
-        val cw = ContextWrapper(context)
-        // path to /data/data/yourApp/app_data/imageDir
-        val directory = cw.getDir("imageDir", Context.MODE_PRIVATE)
-        // Create imageDir
-        val myPath = File(directory, "$id.jpg")
-        var fos: FileOutputStream? = null
+    override suspend fun saveToInternalStorage(id: Int, downloadUrl: String) {
         try {
-            fos = FileOutputStream(myPath)
-            // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            try {
-                fos!!.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
+            File(imageDir, id.toString()).outputStream().use { outputStream ->
+                val buffer = ByteArray(16 * 1024)
+                URL(downloadUrl).openStream()?.buffered().use { inputStream ->
+                    if (inputStream != null) {
+                        while (true) {
+                            val num = inputStream.read(buffer)
+                            if (num <= 0) {
+                                break;
+                            }
+                            outputStream.write(buffer, 0, num)
+                        }
+                    }
+                }
             }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Error saving file", t)
         }
-        return directory.absolutePath
     }
 
-    override fun deleteFromInternalStorage(id: Int, context: Context) {
-        val cw = ContextWrapper(context)
-        // path to /data/data/yourApp/app_data/imageDir
-        val directory = cw.getDir("imageDir", Context.MODE_PRIVATE)
-        // Create imageDir
-        val myPath = File(directory, "$id.jpg")
-        myPath.delete()
+    override suspend fun deleteFromInternalStorage(id: Int) {
+        File(imageDir, id.toString()).delete()
     }
 
+    override fun getUrl(id: Int, remoteUrl: String): String {
+        val file = File(imageDir, id.toString())
+        return if (file.exists()) {
+            file.toUri().toString()
+        } else {
+            remoteUrl
+        }
+    }
 }

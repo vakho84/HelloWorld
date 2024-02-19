@@ -1,13 +1,13 @@
-package com.example.helloworld.data
+package com.example.helloworld.data.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [ImageObjectEntity::class], version = 1)
+@Database(entities = [ImageObjectLocal::class], version = 1)
 abstract class FavoritesDb : RoomDatabase() {
-
+    abstract fun getDao(): ImageObjectDao
     companion object {
         fun getDb(context: Context): FavoritesDb {
             return Room.databaseBuilder(
