@@ -39,11 +39,6 @@
         android:label="@string/menu_weather"
         tools:layout="@layout/fragment_weather" />
 
-    <fragment
-        android:id="@+id/nav_flags"
-        android:name="com.example.helloworld.ui.flags.FlagsFragment"
-        android:label="@string/menu_flags"
-        tools:layout="@layout/fragment_flags" />
 
     <fragment
         android:id="@+id/nav_favorites"
