@@ -1,7 +1,6 @@
 package com.example.helloworld.data
 
 import android.content.Context
-import com.example.helloworld.model.AppPreferencesDataSource
 import com.example.helloworld.model.HelloWorldLang
 import com.example.helloworld.model.HelloWorldTheme
 

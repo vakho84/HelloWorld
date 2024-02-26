@@ -14,7 +14,7 @@ import com.example.helloworld.data.room.toEntity
 import com.example.helloworld.data.toLocal
 import com.example.helloworld.fileManagment.Storage
 import com.example.helloworld.model.ImageObjectEntity
-import com.example.helloworld.retrofit.ImageListApi
+import com.example.helloworld.data.retrofit.ImageListApi
 import kotlinx.coroutines.flow.map
 
 const val TAG = "HomeViewModel"

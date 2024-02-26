@@ -1,4 +1,4 @@
-package com.example.helloworld.retrofit
+package com.example.helloworld.data.retrofit
 
 import com.example.helloworld.data.ImageObjectWeb
 import retrofit2.http.GET

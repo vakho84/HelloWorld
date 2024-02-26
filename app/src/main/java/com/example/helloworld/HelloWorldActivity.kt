@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.example.helloworld.model.AppSettingsRepository
+import com.example.helloworld.data.AppSettingsRepository
 import com.example.helloworld.model.HelloWorldLang
 import java.util.Locale
 

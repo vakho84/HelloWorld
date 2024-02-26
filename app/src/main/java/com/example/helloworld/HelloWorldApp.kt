@@ -9,9 +9,9 @@ import com.example.helloworld.data.room.FavoritesDb
 import com.example.helloworld.data.room.ImageObjectDao
 import com.example.helloworld.fileManagment.Storage
 import com.example.helloworld.fileManagment.StorageMethods
-import com.example.helloworld.model.AppSettingsRepository
+import com.example.helloworld.data.AppSettingsRepository
 import com.example.helloworld.model.HelloWorldTheme
-import com.example.helloworld.retrofit.ImageListApi
+import com.example.helloworld.data.retrofit.ImageListApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale

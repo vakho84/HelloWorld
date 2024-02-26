@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.helloworld.HelloWorldActivity
 import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.databinding.FragmentAboutBinding
-import com.example.helloworld.model.AppSettingsRepository
+import com.example.helloworld.data.AppSettingsRepository
 import com.example.helloworld.model.HelloWorldLang
 import com.example.helloworld.model.HelloWorldTheme
 

@@ -11,7 +11,7 @@ import com.example.helloworld.data.room.ImageObjectDao
 import com.example.helloworld.data.room.toEntity
 import com.example.helloworld.data.toLocal
 import com.example.helloworld.model.ImageObjectEntity
-import com.example.helloworld.retrofit.ImageListApi
+import com.example.helloworld.data.retrofit.ImageListApi
 import com.example.helloworld.ui.home.TAG
 import kotlinx.coroutines.flow.map
 

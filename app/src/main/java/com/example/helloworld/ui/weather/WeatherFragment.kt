@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.helloworld.databinding.FragmentWeatherBinding
-import com.example.helloworld.retrofit.WeatherApi
+import com.example.helloworld.data.retrofit.WeatherApi
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext

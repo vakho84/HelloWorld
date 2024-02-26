@@ -1,4 +1,7 @@
-package com.example.helloworld.model
+package com.example.helloworld.data
+
+import com.example.helloworld.model.HelloWorldLang
+import com.example.helloworld.model.HelloWorldTheme
 
 class AppSettingsRepository(private val appPreferencesDataSource: AppPreferencesDataSource) {
 
