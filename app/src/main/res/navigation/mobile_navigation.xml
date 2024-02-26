@@ -44,7 +44,12 @@
         android:id="@+id/nav_favorites"
         android:name="com.example.helloworld.ui.favorites.FavoritesFragment"
         android:label="@string/menu_favorites"
-        tools:layout="@layout/fragment_image_list" />
+        tools:layout="@layout/fragment_image_list" >
+
+        <action
+            android:id="@+id/action_favorites_to_details"
+            app:destination="@id/nav_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_about"

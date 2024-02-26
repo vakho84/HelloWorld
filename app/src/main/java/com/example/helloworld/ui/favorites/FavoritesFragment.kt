@@ -24,7 +24,7 @@ class FavoritesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val adapter = ImageAdapter(
-        { findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(it)) },
+        { findNavController().navigate(FavoritesFragmentDirections.actionFavoritesToDetails(it)) },
         { imageObject -> CoroutineScope(Dispatchers.IO).launch {
             favoritesViewModel.update(imageObject)
         } },

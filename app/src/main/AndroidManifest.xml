@@ -20,6 +20,9 @@
         android:theme="@style/Theme.HelloWorld"
         tools:targetApi="31">
 
+<!--        <meta-data-->
+<!--            android:name="com.example.helloworld.MyGlideModule"-->
+<!--            android:value="GlideModule" />-->
 
         <activity
             android:name=".SplashScreenActivity"

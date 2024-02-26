@@ -64,6 +64,11 @@ class HomeViewModel(
     }
 
     suspend fun update(imageObjectEntity: ImageObjectEntity) {
+        if (imageObjectEntity.isFavorite) {
+            storage.saveToInternalStorage(imageObjectEntity.id, imageObjectEntity.downloadUrl)
+        } else {
+            storage.deleteFromInternalStorage(imageObjectEntity.id)
+        }
         imageObjectDao.insertImageObject(
             ImageObjectLocal(
                 imageObjectEntity.id,
@@ -75,10 +80,5 @@ class HomeViewModel(
                 imageObjectEntity.isFavorite
             )
         )
-        if (imageObjectEntity.isFavorite) {
-            storage.saveToInternalStorage(imageObjectEntity.id, imageObjectEntity.downloadUrl)
-        } else {
-            storage.deleteFromInternalStorage(imageObjectEntity.id)
-        }
     }
 }

@@ -53,7 +53,7 @@ A fragment with detailed information:</br>
 Also in this fragment you can change language (English or Russian) and theme (dark, light or system default).
 
 ### 6) Details Fragment
-A fragment with detailed image information</br>
+A fragment with detailed image information.</br>
 Fragment provides next information:
 - image id
 - image author
