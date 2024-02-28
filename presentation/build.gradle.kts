@@ -5,7 +5,6 @@ plugins {
     id("kotlin-kapt")
 }
 
-
 android {
     namespace = "com.example.helloworld"
     compileSdk = 34
@@ -18,10 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-
-        buildConfigField("String", "MY_API_KEY", "\"5924949e16a8492b9e8184723231212\"")
-
     }
 
     buildTypes {
@@ -40,25 +35,16 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
 }
 
 dependencies {
-
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation ("com.airbnb.android:lottie:6.3.0")
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")

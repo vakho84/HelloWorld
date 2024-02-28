@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.example.helloworld.data.AppSettingsRepository
-import com.example.helloworld.model.HelloWorldLang
+import com.example.helloworld.domain.AppSettingsRepository
+import com.example.helloworld.domain.HelloWorldLang
 import java.util.Locale
 
 open class HelloWorldActivity : AppCompatActivity() {

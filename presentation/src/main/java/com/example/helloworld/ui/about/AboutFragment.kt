@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment
 import com.example.helloworld.HelloWorldActivity
 import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.databinding.FragmentAboutBinding
-import com.example.helloworld.data.AppSettingsRepository
-import com.example.helloworld.model.HelloWorldLang
-import com.example.helloworld.model.HelloWorldTheme
+import com.example.helloworld.domain.AppSettingsRepository
+import com.example.helloworld.domain.HelloWorldLang
+import com.example.helloworld.domain.HelloWorldTheme
 
 class AboutFragment : Fragment() {
-
     private var _binding: FragmentAboutBinding? = null
     private lateinit  var appSettingsRepository: AppSettingsRepository
 
@@ -25,26 +24,23 @@ class AboutFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-         private val onCheckedChangeListenerTheme = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            val theme: HelloWorldTheme = if (isChecked) HelloWorldTheme.Dark else HelloWorldTheme.Light
-            appSettingsRepository.setTheme(theme)
-            HelloWorldApp.changeTheme(theme)
-        }
+    private val onCheckedChangeListenerTheme = CompoundButton.OnCheckedChangeListener { _, isChecked ->
+        val theme: HelloWorldTheme = if (isChecked) HelloWorldTheme.Dark else HelloWorldTheme.Light
+        appSettingsRepository.setTheme(theme)
+        HelloWorldApp.changeTheme(theme)
+    }
 
-    private val onCheckedChangeListenerLang = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+    private val onCheckedChangeListenerLang = CompoundButton.OnCheckedChangeListener { _, isChecked ->
         val lang: HelloWorldLang = if (isChecked) HelloWorldLang.Rus else HelloWorldLang.Eng
         appSettingsRepository.setLang(lang)
         (activity as HelloWorldActivity?)?.recreate()
     }
 
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-
         appSettingsRepository = (requireContext().applicationContext as HelloWorldApp).appSettingsRepository
 
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
-
 
         binding.phoneAbout.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
@@ -64,18 +60,13 @@ class AboutFragment : Fragment() {
             startActivity(intent)
         }
 
-        val themeSwitchCompat = binding.themeSwitchCompat
-        val langSwitchCompat = binding.langSwitchCompat
-
         updateThemeSwitch()
-        themeSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerTheme)
+        binding.themeSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerTheme)
 
         updateLangSwitch()
-        langSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerLang)
+        binding.langSwitchCompat.setOnCheckedChangeListener(onCheckedChangeListenerLang)
 
-
-        val systemDefaultButton = binding.aboutSystemDefaultButton
-        systemDefaultButton.setOnClickListener {
+        binding.aboutSystemDefaultButton.setOnClickListener {
             appSettingsRepository.setTheme(HelloWorldTheme.System)
             HelloWorldApp.changeTheme(HelloWorldTheme.System)
             updateThemeSwitch()
@@ -101,7 +92,7 @@ class AboutFragment : Fragment() {
         binding.themeSwitchCompat.isChecked = isNightModeOn
     }
 
-    private fun updateLangSwitch(){
+    private fun updateLangSwitch() {
         val isRuOn: Boolean
         val lang: HelloWorldLang = appSettingsRepository.getLang()
         isRuOn = when(lang) {
@@ -111,7 +102,6 @@ class AboutFragment : Fragment() {
         }
         binding.langSwitchCompat.isChecked = isRuOn
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

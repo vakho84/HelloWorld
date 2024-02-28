@@ -1,16 +1,15 @@
-package com.example.helloworld.ui.home
+package com.example.helloworld.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.helloworld.HelloWorldApp
-import com.example.helloworld.data.ImageObjectRepository
-import com.example.helloworld.model.ImageObjectEntity
+import com.example.helloworld.domain.ImageObjectEntity
+import com.example.helloworld.domain.ImageObjectRepository
 
-class HomeViewModel(
+class DetailsViewModel(
     private val imageObjectRepository: ImageObjectRepository
 ) : ViewModel() {
     companion object {
@@ -21,21 +20,17 @@ class HomeViewModel(
                 extras: CreationExtras
             ): T {
                 // Get the Application object from extras
-                val application = checkNotNull(extras[APPLICATION_KEY]) as HelloWorldApp
-                return HomeViewModel(
+                val application = checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]) as HelloWorldApp
+                return DetailsViewModel(
                     application.imageObjectRepository
                 ) as T
             }
         }
     }
 
-    fun getList(): LiveData<List<ImageObjectEntity>> = imageObjectRepository.getAll().asLiveData()
+    fun load(id: Int?): LiveData<ImageObjectEntity> = imageObjectRepository.getOne(id).asLiveData()
 
-    suspend fun refresh() {
-        imageObjectRepository.refreshAll()
-    }
-
-    suspend fun update(imageObjectEntity: ImageObjectEntity) {
-        imageObjectRepository.saveOne(imageObjectEntity)
+    suspend fun refresh(id: Int) {
+        imageObjectRepository.refreshOne(id)
     }
 }

@@ -8,7 +8,7 @@ import java.net.URL
 
 const val TAG = "StorageMethods"
 
-class LocalFileStorage(
+internal class LocalFileStorage(
     val context: Context,
     private val imageDir: File = context.getDir("imageDir", Context.MODE_PRIVATE)
 ) : FileStorage {

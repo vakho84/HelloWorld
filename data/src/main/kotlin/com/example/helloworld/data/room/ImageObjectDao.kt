@@ -8,7 +8,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ImageObjectDao {
+internal interface ImageObjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertImageObject (imageObject: ImageObjectLocal)
 

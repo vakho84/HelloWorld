@@ -12,7 +12,6 @@ import com.example.helloworld.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity: HelloWorldActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -30,7 +29,7 @@ class MainActivity: HelloWorldActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_favorites, R.id.nav_gallery, R.id.nav_weather, R.id.nav_about), drawerLayout)
+                R.id.nav_home, R.id.nav_favorites, R.id.nav_gallery, R.id.nav_about), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -46,5 +45,4 @@ class MainActivity: HelloWorldActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
 }

@@ -11,7 +11,7 @@ data class ImageObjectWeb(
     val download_url: String
 )
 
-fun ImageObjectWeb.toLocal(isFavorite: Boolean): ImageObjectLocal {
+internal fun ImageObjectWeb.toLocal(isFavorite: Boolean): ImageObjectLocal {
     return ImageObjectLocal(
         this.id,
         this.author,

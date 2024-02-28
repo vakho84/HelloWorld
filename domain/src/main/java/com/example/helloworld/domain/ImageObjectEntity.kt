@@ -1,4 +1,4 @@
-package com.example.helloworld.model
+package com.example.helloworld.domain
 
 data class ImageObjectEntity(
     val id: Int,

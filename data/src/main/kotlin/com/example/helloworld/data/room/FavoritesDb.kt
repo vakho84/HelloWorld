@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [ImageObjectLocal::class], version = 1)
-abstract class FavoritesDb : RoomDatabase() {
+internal abstract class FavoritesDb : RoomDatabase() {
     abstract fun getDao(): ImageObjectDao
     companion object {
         fun getDb(context: Context): FavoritesDb {

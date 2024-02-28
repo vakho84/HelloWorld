@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.helloworld.HelloWorldApp
-import com.example.helloworld.data.ImageObjectRepository
-import com.example.helloworld.model.ImageObjectEntity
+import com.example.helloworld.domain.ImageObjectEntity
+import com.example.helloworld.domain.ImageObjectRepository
 
 class FavoritesViewModel(
     private val imageObjectRepository: ImageObjectRepository

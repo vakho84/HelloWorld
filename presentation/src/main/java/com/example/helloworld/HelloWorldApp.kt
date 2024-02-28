@@ -4,15 +4,11 @@ import android.app.Application
 import android.content.res.Resources
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.helloworld.data.AppSettingsRepository
-import com.example.helloworld.data.AppSharedPreferencesDataSource
-import com.example.helloworld.data.ImageObjectRepository
-import com.example.helloworld.data.fileManagment.LocalFileStorage
-import com.example.helloworld.data.retrofit.ImageListApi
-import com.example.helloworld.data.room.FavoritesDb
-import com.example.helloworld.model.HelloWorldTheme
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.helloworld.data.createAppSettingsRepository
+import com.example.helloworld.data.createImageObjectRepository
+import com.example.helloworld.domain.AppSettingsRepository
+import com.example.helloworld.domain.HelloWorldTheme
+import com.example.helloworld.domain.ImageObjectRepository
 import java.util.Locale
 
 class HelloWorldApp : Application() {
@@ -63,20 +59,9 @@ class HelloWorldApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://picsum.photos")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val imageListApi = retrofit.create(ImageListApi::class.java)
+        _imageObjectRepository = createImageObjectRepository(this)
+        _appSettingsRepository = createAppSettingsRepository(this)
 
-        val imageObjectDao = FavoritesDb.getDb(this).getDao()
-
-        val fileStorage = LocalFileStorage(this)
-
-        _imageObjectRepository = ImageObjectRepository(imageObjectDao, imageListApi, fileStorage)
-
-        val appPreferences = AppSharedPreferencesDataSource(this)
-        _appSettingsRepository = AppSettingsRepository(appPreferences)
-        changeTheme(appPreferences.getTheme())
+        changeTheme(_appSettingsRepository.getTheme())
     }
 }

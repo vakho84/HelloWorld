@@ -34,13 +34,6 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_weather"
-        android:name="com.example.helloworld.ui.weather.WeatherFragment"
-        android:label="@string/menu_weather"
-        tools:layout="@layout/fragment_weather" />
-
-
-    <fragment
         android:id="@+id/nav_favorites"
         android:name="com.example.helloworld.ui.favorites.FavoritesFragment"
         android:label="@string/menu_favorites"
@@ -56,5 +49,4 @@
         android:name="com.example.helloworld.ui.about.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
-
 </navigation>
