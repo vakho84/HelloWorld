@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.helloworld.data.AppSettingsRepository
 import com.example.helloworld.data.AppSharedPreferencesDataSource
 import com.example.helloworld.data.ImageObjectRepository
-import com.example.helloworld.data.fileManagment.StorageMethods
+import com.example.helloworld.data.fileManagment.LocalFileStorage
 import com.example.helloworld.data.retrofit.ImageListApi
 import com.example.helloworld.data.room.FavoritesDb
 import com.example.helloworld.model.HelloWorldTheme
@@ -71,9 +71,9 @@ class HelloWorldApp : Application() {
 
         val imageObjectDao = FavoritesDb.getDb(this).getDao()
 
-        val storage = StorageMethods(this)
+        val fileStorage = LocalFileStorage(this)
 
-        _imageObjectRepository = ImageObjectRepository(imageObjectDao, imageListApi, storage)
+        _imageObjectRepository = ImageObjectRepository(imageObjectDao, imageListApi, fileStorage)
 
         val appPreferences = AppSharedPreferencesDataSource(this)
         _appSettingsRepository = AppSettingsRepository(appPreferences)

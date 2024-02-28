@@ -24,11 +24,9 @@ class HomeFragment : Fragment() {
 
     private val adapter = ImageAdapter(
         { findNavController().navigate(HomeFragmentDirections.actionHomeToDetails(it)) },
-        { imageObject ->
-            CoroutineScope(Dispatchers.IO).launch {
-                homeViewModelInstance.update(imageObject)
-            }
-        },
+        { imageObject -> CoroutineScope(Dispatchers.IO).launch {
+            homeViewModelInstance.update(imageObject)
+        } },
         { it.downloadUrl }
     )
 

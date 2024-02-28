@@ -9,3 +9,5 @@ data class ImageObjectEntity(
     val downloadUrl: String,
     val isFavorite: Boolean
 )
+
+fun ImageObjectEntity.getFilename(): String = this.id.toString()

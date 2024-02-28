@@ -35,7 +35,7 @@ class FavoritesViewModel(
         imageObjectRepository.saveOne(imageObjectEntity)
     }
 
-    fun getUrl(id: Int, downloadUrl: String): String {
-        return imageObjectRepository.getUrl(id, downloadUrl)
+    fun getLocalUri(imageObjectEntity: ImageObjectEntity): String {
+        return imageObjectRepository.getLocalUri(imageObjectEntity)
     }
 }

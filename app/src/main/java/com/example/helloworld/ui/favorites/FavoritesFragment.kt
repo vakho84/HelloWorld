@@ -26,7 +26,7 @@ class FavoritesFragment : Fragment() {
         { imageObject -> CoroutineScope(Dispatchers.IO).launch {
             favoritesViewModel.update(imageObject)
         } },
-        { favoritesViewModel.getUrl(it.id, it.downloadUrl) }
+        { favoritesViewModel.getLocalUri(it) }
     )
 
     override fun onCreateView(

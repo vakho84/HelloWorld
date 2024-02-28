@@ -1,12 +1,13 @@
 package com.example.helloworld.data
 
 import android.util.Log
-import com.example.helloworld.data.fileManagment.Storage
+import com.example.helloworld.data.fileManagment.FileStorage
 import com.example.helloworld.data.retrofit.ImageListApi
 import com.example.helloworld.data.room.ImageObjectDao
 import com.example.helloworld.data.room.ImageObjectLocal
 import com.example.helloworld.data.room.toEntity
 import com.example.helloworld.model.ImageObjectEntity
+import com.example.helloworld.model.getFilename
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -15,7 +16,7 @@ const val TAG = "ImageObjectRepository"
 class ImageObjectRepository(
     private val imageObjectDao: ImageObjectDao,
     private val imageListApi: ImageListApi,
-    private val storage: Storage
+    private val fileStorage: FileStorage
 ) {
     fun getAll(): Flow<List<ImageObjectEntity>> {
         return imageObjectDao.getAllImageObjects().map {
@@ -61,9 +62,9 @@ class ImageObjectRepository(
 
     suspend fun saveOne(imageObjectEntity: ImageObjectEntity) {
         if (imageObjectEntity.isFavorite) {
-            storage.saveToInternalStorage(imageObjectEntity.id, imageObjectEntity.downloadUrl)
+            fileStorage.download(imageObjectEntity.getFilename(), imageObjectEntity.downloadUrl)
         } else {
-            storage.deleteFromInternalStorage(imageObjectEntity.id)
+            fileStorage.delete(imageObjectEntity.getFilename())
         }
         imageObjectDao.insertImageObject(
             ImageObjectLocal(
@@ -78,7 +79,7 @@ class ImageObjectRepository(
         )
     }
 
-    fun getUrl(id: Int, downloadUrl: String): String {
-        return storage.getUrl(id, downloadUrl)
+    fun getLocalUri(imageObjectEntity: ImageObjectEntity): String {
+        return fileStorage.getUri(imageObjectEntity.getFilename())
     }
 }

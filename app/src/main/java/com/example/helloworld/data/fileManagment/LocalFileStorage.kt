@@ -8,24 +8,24 @@ import java.net.URL
 
 const val TAG = "StorageMethods"
 
-class StorageMethods(
+class LocalFileStorage(
     val context: Context,
     private val imageDir: File = context.getDir("imageDir", Context.MODE_PRIVATE)
-) : Storage {
+) : FileStorage {
     init {
         imageDir.mkdirs()
     }
 
-    override suspend fun saveToInternalStorage(id: Int, downloadUrl: String) {
+    override suspend fun download(filename: String, downloadUrl: String) {
         try {
-            File(imageDir, id.toString()).outputStream().use { outputStream ->
+            File(imageDir, filename).outputStream().use { outputStream ->
                 val buffer = ByteArray(16 * 1024)
                 URL(downloadUrl).openStream()?.buffered().use { inputStream ->
                     if (inputStream != null) {
                         while (true) {
                             val num = inputStream.read(buffer)
                             if (num <= 0) {
-                                break;
+                                break
                             }
                             outputStream.write(buffer, 0, num)
                         }
@@ -37,16 +37,12 @@ class StorageMethods(
         }
     }
 
-    override suspend fun deleteFromInternalStorage(id: Int) {
-        File(imageDir, id.toString()).delete()
+    override suspend fun delete(filename: String) {
+        File(imageDir, filename).delete()
     }
 
-    override fun getUrl(id: Int, remoteUrl: String): String {
-        val file = File(imageDir, id.toString())
-        return if (file.exists()) {
-            file.toUri().toString()
-        } else {
-            remoteUrl
-        }
+    override fun getUri(filename: String): String {
+        val file = File(imageDir, filename)
+        return file.toUri().toString()
     }
 }
