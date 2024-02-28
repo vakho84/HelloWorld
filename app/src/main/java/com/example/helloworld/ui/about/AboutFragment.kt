@@ -41,7 +41,7 @@ class AboutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        appSettingsRepository = (requireContext().applicationContext as HelloWorldApp).getAppSettingsRepository()
+        appSettingsRepository = (requireContext().applicationContext as HelloWorldApp).appSettingsRepository
 
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
 

@@ -1,4 +1,4 @@
-package com.example.helloworld.fileManagment
+package com.example.helloworld.data.fileManagment
 
 interface Storage {
     suspend fun saveToInternalStorage(id: Int, downloadUrl: String)

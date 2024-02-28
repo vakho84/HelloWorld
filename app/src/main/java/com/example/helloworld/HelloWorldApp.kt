@@ -4,28 +4,23 @@ import android.app.Application
 import android.content.res.Resources
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.helloworld.data.AppSharedPreferencesDataSource
-import com.example.helloworld.data.room.FavoritesDb
-import com.example.helloworld.data.room.ImageObjectDao
-import com.example.helloworld.fileManagment.Storage
-import com.example.helloworld.fileManagment.StorageMethods
 import com.example.helloworld.data.AppSettingsRepository
-import com.example.helloworld.model.HelloWorldTheme
+import com.example.helloworld.data.AppSharedPreferencesDataSource
+import com.example.helloworld.data.ImageObjectRepository
+import com.example.helloworld.data.fileManagment.StorageMethods
 import com.example.helloworld.data.retrofit.ImageListApi
+import com.example.helloworld.data.room.FavoritesDb
+import com.example.helloworld.model.HelloWorldTheme
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale
 
 class HelloWorldApp : Application() {
-    private lateinit var _storage: Storage
-    private lateinit var _imageListApi: ImageListApi
-    private lateinit var _imageObjectDao: ImageObjectDao
+    private lateinit var _appSettingsRepository: AppSettingsRepository
+    private lateinit var _imageObjectRepository: ImageObjectRepository
 
-    private lateinit var appSettingsRepository: AppSettingsRepository
-
-    val storage get() = _storage
-    val imageListApi get() = _imageListApi
-    val imageObjectDao get() = _imageObjectDao
+    val appSettingsRepository get() = _appSettingsRepository
+    val imageObjectRepository get() = _imageObjectRepository
 
     companion object {
         fun changeTheme(theme: HelloWorldTheme?) {
@@ -72,18 +67,16 @@ class HelloWorldApp : Application() {
             .baseUrl("https://picsum.photos")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        _imageListApi = retrofit.create(ImageListApi::class.java)
+        val imageListApi = retrofit.create(ImageListApi::class.java)
 
-        _imageObjectDao = FavoritesDb.getDb(this).getDao()
+        val imageObjectDao = FavoritesDb.getDb(this).getDao()
 
-        _storage = StorageMethods(this)
+        val storage = StorageMethods(this)
+
+        _imageObjectRepository = ImageObjectRepository(imageObjectDao, imageListApi, storage)
 
         val appPreferences = AppSharedPreferencesDataSource(this)
-        appSettingsRepository = AppSettingsRepository(appPreferences)
+        _appSettingsRepository = AppSettingsRepository(appPreferences)
         changeTheme(appPreferences.getTheme())
-    }
-
-    fun getAppSettingsRepository(): AppSettingsRepository {
-        return appSettingsRepository
     }
 }

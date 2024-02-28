@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.databinding.FragmentImageListBinding
 import com.example.helloworld.ui.ImageAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +29,7 @@ class HomeFragment : Fragment() {
                 homeViewModelInstance.update(imageObject)
             }
         },
-        { (requireContext().applicationContext as HelloWorldApp).storage.getUrl(it.id, it.downloadUrl) }
+        { it.downloadUrl }
     )
 
     override fun onCreateView(

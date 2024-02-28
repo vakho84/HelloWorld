@@ -27,7 +27,7 @@ open class HelloWorldActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(base: Context) {
-        appSettingsRepository = (base.applicationContext as HelloWorldApp).getAppSettingsRepository()
+        appSettingsRepository = (base.applicationContext as HelloWorldApp).appSettingsRepository
         super.attachBaseContext(createContext(appSettingsRepository.getLang(), base))
     }
 

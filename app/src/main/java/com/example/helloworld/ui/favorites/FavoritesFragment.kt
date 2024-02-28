@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.helloworld.HelloWorldApp
 import com.example.helloworld.databinding.FragmentImageListBinding
 import com.example.helloworld.ui.ImageAdapter
-import com.example.helloworld.ui.home.HomeFragmentDirections
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +26,7 @@ class FavoritesFragment : Fragment() {
         { imageObject -> CoroutineScope(Dispatchers.IO).launch {
             favoritesViewModel.update(imageObject)
         } },
-        { (requireContext().applicationContext as HelloWorldApp).storage.getUrl(it.id, it.downloadUrl) }
+        { favoritesViewModel.getUrl(it.id, it.downloadUrl) }
     )
 
     override fun onCreateView(

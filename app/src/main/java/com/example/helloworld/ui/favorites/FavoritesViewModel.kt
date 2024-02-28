@@ -7,16 +7,11 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.helloworld.HelloWorldApp
-import com.example.helloworld.data.room.ImageObjectDao
-import com.example.helloworld.data.room.ImageObjectLocal
-import com.example.helloworld.data.room.toEntity
-import com.example.helloworld.fileManagment.Storage
+import com.example.helloworld.data.ImageObjectRepository
 import com.example.helloworld.model.ImageObjectEntity
-import kotlinx.coroutines.flow.map
 
 class FavoritesViewModel(
-    private val imageObjectDao: ImageObjectDao,
-    private val storage: Storage
+    private val imageObjectRepository: ImageObjectRepository
 ) : ViewModel() {
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
@@ -28,33 +23,19 @@ class FavoritesViewModel(
                 // Get the Application object from extras
                 val application = checkNotNull(extras[APPLICATION_KEY]) as HelloWorldApp
                 return FavoritesViewModel(
-                    application.imageObjectDao,
-                    application.storage
+                    application.imageObjectRepository
                 ) as T
             }
         }
     }
 
-    fun getList(): LiveData<List<ImageObjectEntity>> = imageObjectDao.getFavorites().map {
-        it.map { imageObjectDb -> imageObjectDb.toEntity() }
-    }.asLiveData()
+    fun getList(): LiveData<List<ImageObjectEntity>> = imageObjectRepository.getFavorites().asLiveData()
 
     suspend fun update(imageObjectEntity: ImageObjectEntity) {
-        imageObjectDao.insertImageObject(
-            ImageObjectLocal(
-                imageObjectEntity.id,
-                imageObjectEntity.author,
-                imageObjectEntity.width,
-                imageObjectEntity.height,
-                imageObjectEntity.url,
-                imageObjectEntity.downloadUrl,
-                imageObjectEntity.isFavorite
-            )
-        )
-        if (imageObjectEntity.isFavorite) {
-            storage.saveToInternalStorage(imageObjectEntity.id, imageObjectEntity.downloadUrl)
-        } else {
-            storage.deleteFromInternalStorage(imageObjectEntity.id)
-        }
+        imageObjectRepository.saveOne(imageObjectEntity)
+    }
+
+    fun getUrl(id: Int, downloadUrl: String): String {
+        return imageObjectRepository.getUrl(id, downloadUrl)
     }
 }
