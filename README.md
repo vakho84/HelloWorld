@@ -1,7 +1,7 @@
 # Hello World
 The Hello World app - free app for introducing popular technologies in Android and Android baisics.
 ## Application Structure:
-App with side menu and 6 fragments.
+App with side menu and 5 fragments.
 ### 1) Home Fragment
 A start fragment contains cards of images loaded from web.</br>
 Used RecyclerView to load image cards on screen.</br>
@@ -29,20 +29,7 @@ Indicates data loading process (image downloading).
 
 Used Libs RetroFit, Glide.
 
-### 4) Weather Fragment
-A fragment with possibility to get actual weather forecast and to update data using pull to refresh.</br>
-Contains data:
-- City
-- Region
-- Country
-- Wind
-- Temperature
-- Weather icon.
-
-Used API from  https://www.weatherapi.com</br>
-Used Libs RetroFit, Glide.
-
-### 5) About Fragment
+### 4) About Fragment
 A fragment with detailed information:</br>
 - Title
 - Logo
@@ -52,7 +39,7 @@ A fragment with detailed information:</br>
   
 Also in this fragment you can change language (English or Russian) and theme (dark, light or system default).
 
-### 6) Details Fragment
+### 5) Details Fragment
 A fragment with detailed image information.</br>
 Fragment provides next information:
 - image id
