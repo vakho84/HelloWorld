@@ -24,7 +24,7 @@ class ImageAdapter(
         private val binding = ImageItemBinding.bind(item)
 
         fun bind(imageObjectEntity: ImageObjectEntity) = with(binding) {
-            binding.tV.text = imageObjectEntity.author
+            this.tV.text = imageObjectEntity.author
 
             val url = this@ImageHolder.parent.localUrlProvider.apply(imageObjectEntity)
             Glide.with(this@with.im)
@@ -33,16 +33,18 @@ class ImageAdapter(
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(binding.im)
 
-            binding.favCheckbox.isChecked = imageObjectEntity.isFavorite
-
-            binding.im.setOnClickListener {
+            this.im.setOnClickListener {
                 this@ImageHolder.parent.clickHandler.accept(imageObjectEntity.id)
             }
 
-            binding.favCheckbox.setOnCheckedChangeListener { _, checked ->
-                this@ImageHolder.parent.checkBoxClickHandler.accept(imageObjectEntity.copy(isFavorite = checked))
+            with(this.favCheckbox) {
+                this.setOnCheckedChangeListener(null)
+                this.isChecked = imageObjectEntity.isFavorite
+                this.setOnCheckedChangeListener { _, checked ->
+                    this@ImageHolder.parent.checkBoxClickHandler.accept(imageObjectEntity.copy(isFavorite = checked))
+                }
             }
-        }
+         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {

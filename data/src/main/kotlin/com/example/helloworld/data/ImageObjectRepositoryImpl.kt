@@ -37,7 +37,7 @@ internal class ImageObjectRepositoryImpl(
 
     override suspend fun refreshAll() {
         try {
-            val imageList = imageListApi.getImageList(5, 30)
+            val imageList = imageListApi.getImageList(30, 5)
             imageList.forEach { imageObjectWeb ->
                 val imageObjectLocal = imageObjectDao.loadById(imageObjectWeb.id)
                 imageObjectDao.insertImageObject(
